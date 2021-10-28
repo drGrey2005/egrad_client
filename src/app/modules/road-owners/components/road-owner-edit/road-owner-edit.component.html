@@ -1,0 +1,320 @@
+<div class="container-fluid">
+  <div class="content-area">
+    <div class="content-header">
+      <h3>Правообладатель</h3>
+    </div>
+    <div>
+      <form [formGroup]="roadOwnerForm">
+        <fieldset>
+          <div class="card border-0" formArrayName="Users">
+            <div class="card-header">
+              Информация о пользователе
+            </div>
+            <div class="card-body">
+              <div *ngFor="let user of users; let i=index">
+                <div class="row" [formGroup]="user">
+                  <div class="form-group col-md-6">
+                    <div class="row">
+                      <label class="col-md-4 col-form-label label-required">Логин</label>
+                      <div class="col-md-8">
+                        <input type="text" disabled class="k-textbox egrad-form-control" formControlName="username"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <div class="row">
+                      <label class="col-sm-4 col-form-label label-required">Электронная почта</label>
+                      <div class="col-sm-8">
+                        <input type="text" disabled class="k-textbox egrad-form-control" formControlName="email"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <div class="row">
+                      <label class="col-md-4 col-form-label label-required">Имя</label>
+                      <div class="col-md-8">
+                        <input type="text" disabled class="k-textbox egrad-form-control" formControlName="first_name"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <div class="row">
+                      <label class="col-md-4 col-form-label label-required">Фамилия</label>
+                      <div class="col-md-8">
+                        <input type="text" disabled class="k-textbox egrad-form-control" formControlName="last_name"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-0">
+            <div class="card-header">
+              Информация о собственнике
+            </div>
+            <div class="card-body">
+              <div class="row" formGroupName="Organization">
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label label-required">Полное наименование</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Name"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('Name')?.touched || roadOwnerForm.get('Organization').get('Name')?.dirty">
+                        <span class="error"
+                              *ngIf="roadOwnerForm.get('Organization').get('Name')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label">Краткое наименование</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="CName"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">Руководитель</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="HeadName"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('HeadName')?.touched || roadOwnerForm.get('Organization').get('HeadName')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('HeadName')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label">Дата внесения в ЕГРЮЛ</label>
+                    <div class="col-sm-8">
+                      <!--                      <input type="text" class="k-textbox egrad-form-control" formControlName="EgrulDate"/>-->
+                      <kendo-datepicker [format]="'dd-MM-yyyy'" class="egrad-form-control"
+                                        formControlName="EgrulDate"></kendo-datepicker>
+                    </div>
+                  </div>
+                </div>
+
+                <div class=" form-group col-md-6
+                      ">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">Должность</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Position"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6"></div>
+
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ИНН</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Inn"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('Inn')?.touched || roadOwnerForm.get('Organization').get('Inn')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('Inn')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">КПП</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="KPP"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('KPP')?.touched || roadOwnerForm.get('Organization').get('KPP')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('KPP')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required label-required">ОГРН</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Ogrn"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('Ogrn')?.touched || roadOwnerForm.get('Organization').get('Ogrn')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('Ogrn')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКОГУ</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKOGU"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKOGU')?.touched || roadOwnerForm.get('Organization').get('OKOGU')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('OKOGU')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКПО</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKPO"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKPO')?.touched || roadOwnerForm.get('Organization').get('OKPO')?.dirty">
+                        <span class="error"
+                              *ngIf="roadOwnerForm.get('Organization').get('OKPO')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКВЭД</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKVED"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKVED')?.touched || roadOwnerForm.get('Organization').get('OKVED')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('OKVED')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКТМО</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKTMO"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKTMO')?.touched || roadOwnerForm.get('Organization').get('OKTMO')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('OKTMO')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКОПФ</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKOPF"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKOPF')?.touched || roadOwnerForm.get('Organization').get('OKOPF')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('OKOPF')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 col-form-label label-required">ОКФС</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="OKFS"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('Organization').get('OKFS')?.touched || roadOwnerForm.get('Organization').get('OKFS')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Organization').get('OKFS')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label">Регион</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Region"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label label-required">Почтовый адрес</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="PostAddress"/>
+                      <div
+                        *ngIf="roadOwnerForm.get('PostAddress')?.touched || roadOwnerForm.get('PostAddress')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('PostAddress')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label">Телефон</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Phone"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label">Факс</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Fax"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label label-required">Электронная почта</label>
+                    <div class="col-md-8">
+                      <input type="text" class="k-textbox egrad-form-control" formControlName="Email"/>
+                      <div *ngIf="roadOwnerForm.get('Email')?.touched || roadOwnerForm.get('Email')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('Email')?.errors?.required">{{requiredFieldText}}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label label-required">Наименование вещного права</label>
+                    <div class="col-md-8">
+                      <kendo-dropdownlist class="egrad-form-control" [data]="rightDocTypes" [valuePrimitive]="true"
+                                          [textField]="'text'" [valueField]="'value'"
+                                          formControlName="RightDocType">
+                      </kendo-dropdownlist>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label label-required">Вид и реквизиты правоустанавливающих
+                      / правоудостоверяющих документов</label>
+                    <div class="col-md-8">
+                      <textarea kendoTextArea [style.width.%]="100" formControlName="RightDocDetails"></textarea>
+                      <div
+                        *ngIf="roadOwnerForm.get('RightDocDetails')?.touched || roadOwnerForm.get('RightDocDetails')?.dirty">
+                      <span class="error"
+                            *ngIf="roadOwnerForm.get('RightDocDetails')?.errors?.required">{{requiredFieldText}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="text-left">
+        <button type="submit" *ngIf="roadOwnerForm.value" class="btn btn-success m-1" [disabled]="roadOwnerForm.invalid"
+                (click)="submitClick()"><span><i class="fas fa-save"></i> Сохранить</span></button>
+        <a class="k-button" role="button" (click)="cancelClick()"><span><i class="fas fa-ban"></i> Отмена</span></a>
+      </div>
+    </div>
+  </div>

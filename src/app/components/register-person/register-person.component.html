@@ -1,0 +1,156 @@
+<div class="container-fluid">
+  <div class="content-area">
+    <h3 class="p-1">Регистрация нового физического лица или ИП</h3>
+    <div class="alert alert-danger" role="alert" *ngIf="!!errorMessage">{{errorMessage}}</div>
+    <div class="p-2">
+      <form novalidate #form="ngForm" (ngSubmit)="register(form)">
+        <fieldset>
+          <input type="submit" style="visibility: hidden">
+          <div class="form-group row required">
+            <label class="col-3 control-label">Имя</label>
+            <div class="col-7">
+              <input class="form-control" #firstName="ngModel" name="firstName" [(ngModel)]="person.first_name" required
+                autofocus />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && firstName.invalid">
+                <li *ngFor="let error of getValidationMessages(firstName, 'Имя')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Фамилия</label>
+            <div class="col-7">
+              <input class="form-control" #lastName="ngModel" name="lastName" [(ngModel)]="person.last_name" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && lastName.invalid">
+                <li *ngFor="let error of getValidationMessages(lastName, 'Фамилия')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Отчество</label>
+            <div class="col-7">
+              <input class="form-control" #surName="ngModel" name="surName" [(ngModel)]="person.sur_name" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && surName.invalid">
+                <li *ngFor="let error of getValidationMessages(surName, 'Отчество')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Дата рождения</label>
+            <div class="col-7">
+              <input class="form-control" #birthDate="ngModel" name="birthDate" [(ngModel)]="person.date_of_birth"
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && birthDate.invalid">
+                <li *ngFor="let error of getValidationMessages(birthDate, 'Дата рождения')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Наименование документа, удостоверяющего личность</label>
+            <div class="col-7">
+              <input class="form-control" #docName="ngModel" name="docName" [(ngModel)]="person.doc_name" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && docName.invalid">
+                <li
+                  *ngFor="let error of getValidationMessages(docName, 'Наименование документа, удостоверяющего личность')">
+                  {{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Реквизиты документа, удостоверяющего личность</label>
+            <div class="col-7">
+              <input class="form-control" #docNumber="ngModel" name="docNumber" [(ngModel)]="person.doc_number"
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && docNumber.invalid">
+                <li
+                  *ngFor="let error of getValidationMessages(docNumber, 'Реквизиты документа, удостоверяющего личность')">
+                  {{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Регион</label>
+            <div class="col-7">
+              <input class="form-control" #region="ngModel" name="region" [(ngModel)]="person.region" />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && region.invalid">
+                <li *ngFor="let error of getValidationMessages(region, 'Регион')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Почтовый адрес</label>
+            <div class="col-7">
+              <input class="form-control" #postAddress="ngModel" name="postAddress" [(ngModel)]="person.post_address"
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && postAddress.invalid">
+                <li *ngFor="let error of getValidationMessages(postAddress, 'Почтовый адрес')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Телефон</label>
+            <div class="col-7">
+              <input class="form-control" #phone="ngModel" name="phone" [(ngModel)]="person.phone" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && phone.invalid">
+                <li *ngFor="let error of getValidationMessages(phone, 'Телефон')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 control-label">Факс</label>
+            <div class="col-7">
+              <input class="form-control" #fax="ngModel" name="fax" [(ngModel)]="person.fax" />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && fax.invalid">
+                <li *ngFor="let error of getValidationMessages(fax, 'Факс')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 control-label">Электронная почта</label>
+            <div class="col-7">
+              <input class="form-control" #email="ngModel" name="email" [(ngModel)]="person.owner_email" />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && email.invalid">
+                <li *ngFor="let error of getValidationMessages(email, 'Электронная почта')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">ИНН</label>
+            <div class="col-7">
+              <input class="form-control" #inn="ngModel" name="inn" [(ngModel)]="person.inn" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && inn.invalid">
+                <li *ngFor="let error of getValidationMessages(inn, 'ИНН')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Вид и реквизиты правоустанавливающих / правоудостоверяющих
+              документов</label>
+            <div class="col-7">
+              <input class="form-control" #rightDocDetails="ngModel" name="rightDocDetails"
+                [(ngModel)]="person.right_doc_details" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && rightDocDetails.invalid">
+                <li *ngFor="let error of getValidationMessages(rightDocDetails, '')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-3 control-label">Наименование вещного права</label>
+            <div class="col-7">
+              <input class="form-control" #rightDocType="ngModel" name="rightDocType"
+                [(ngModel)]="person.right_doc_type" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && rightDocType.invalid">
+                <li *ngFor="let error of getValidationMessages(rightDocType, 'Наименование вещного права')">{{error}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+        <div>
+          <button class="btn btn-secondary m-1" routerLink="/login">Назад</button>
+          <button class="btn btn-primary m-1" [disabled]="formSubmitted && form.invalid"
+            type="submit">Зарегистрировать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

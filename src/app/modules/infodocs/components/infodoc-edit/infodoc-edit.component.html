@@ -1,0 +1,194 @@
+<div class="container-fluid">
+  <div class="content-area">
+    <div class="content-header">
+      <h3 *ngIf="!isNew">Редактирование выписки</h3>
+      <h3 *ngIf="isNew">Создание выписки</h3>
+    </div>
+    <div class="card border-0">
+      <div class="card-body">
+        <form [formGroup]="form">
+          <fieldset>
+            <div class="row">
+              <input hidden type="text" class="k-textbox form-control" formControlName="id" />
+
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-md-4 col-form-label label-required"
+                    [class.invalid]="isControlInvalid('RequestOrganization')">Реквизиты
+                    организации (данные гражданина), направившей запрос</label>
+                  <div class="col-md-8">
+                    <input type="text" class="k-textbox egrad-form-control" formControlName="RequestOrganization" />
+                    <div *ngIf="isControlInvalid('RequestOrganization')">
+                      <div *ngIf="form.get('RequestOrganization').errors.required" class="field-error-message">
+                        Поле обязательно для заполнения.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-sm-4 col-form-label label-required"
+                    [class.invalid]="isControlInvalid('RequestDate')">Дата
+                    поступления запроса</label>
+                  <div class="col-sm-8">
+                    <kendo-datepicker formControlName="RequestDate">
+                    </kendo-datepicker>
+                    <div *ngIf="isControlInvalid('RequestDate')">
+                      <div *ngIf="form.get('RequestDate').errors.required" class="field-error-message">
+                        Поле обязательно для заполнения.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-md-4 col-form-label">Категория заявителя</label>
+                  <div class="col-md-8">
+                    <kendo-dropdownlist class="egrad-form-control" [data]="requestorTypes" [valuePrimitive]="true"
+                      [textField]="'text'" [valueField]="'value'" formControlName="RequestorType">
+                    </kendo-dropdownlist>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-md-4 col-form-label">Номер предоставленной выписки</label>
+                  <div class="col-md-8">
+                    <input type="text" class="k-textbox egrad-form-control" formControlName="Number" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-sm-4 col-form-label">Дата предоставленной выписки</label>
+                  <div class="col-sm-8">
+                    <kendo-datepicker formControlName="CreationDate"></kendo-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="PaymentFlag"
+                    formControlName="PaymentFlag">
+                  <label class="form-check-label" for="PaymentFlag">
+                    Является ли выписка платной
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <label class="col-md-4 col-form-label">Сведения об оплате выписки</label>
+                  <div class="col-md-8">
+                    <input type="text" class="k-textbox egrad-form-control" formControlName="PaymentInfo" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row infocardGrid">
+              <label for="gridInfocard" class="col-form-label">Инфокарты</label>
+              <kendo-grid class="form-control" id="gridInfocard" [style.maxHeight.px]="300" [style.height.px]="300"
+                [data]="infocards.value" (remove)="removeHandler($event)" style="overflow: scroll">
+                <ng-template kendoGridToolbarTemplate [position]="'top'">
+                  <kendo-dropdownbutton [data]="filterModes" (itemClick)="onAddInfocardClick($event)">
+                    <span><i class="fas fa-plus"></i> Добавить <i class=" fas fa-chevron-down"></i></span>
+                    <ng-template kendoDropDownButtonItemTemplate let-item>
+                      <span style="width: 160px;">{{ item.text }}</span>
+                    </ng-template>
+                  </kendo-dropdownbutton>
+                  <button class="k-button" (click)="clear()">
+                    <span><i class="fas fa-times"></i> Очистить</span>
+                  </button>
+                </ng-template>
+                <kendo-grid-column field="RegNumber" title="Реестровый номер" [width]="50">
+                </kendo-grid-column>
+                <kendo-grid-column field="EnterDate" title="Дата внесения" [width]="50">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-date-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                    </kendo-grid-date-filter-cell>
+                  </ng-template>
+                  <ng-template kendoGridCellTemplate let-item>
+                    {{item.EnterDate?(item.EnterDate| date:"shortDate"):''}}
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="RoadName" title="Наименование" [width]="140">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                    </kendo-grid-string-filter-cell>
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="RoadNumber" title="Идентификационный номер" [width]="140">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                    </kendo-grid-string-filter-cell>
+                  </ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column field="Status" title="Источник" [width]="140">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+                    </kendo-grid-string-filter-cell>
+                  </ng-template>
+                </kendo-grid-column>
+
+                <kendo-grid-column title="Блоки инфокарты" [width]="50">
+                  <ng-template kendoGridCellTemplate let-item>
+                    <button class="btn btn-primary btn-sm" (click)="setParts(item)"><span><i
+                          class="fas fa-pencil-alt"></i>
+                        Выбрать</span></button>
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-command-column title="Действия" [width]="50">
+                  <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button class="btn btn-danger btn-sm" kendoGridRemoveCommand><span><i class="fas fa-times"></i>
+                        Удалить</span></button>
+                  </ng-template>
+                </kendo-grid-command-column>
+              </kendo-grid>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="col-md-4 col-form-label">Лицо, подписывающее выписку</label>
+                <div class="col-md-8">
+                  <kendo-dropdownlist formControlName="signer" [data]="infodocSigners" [defaultItem]="null"
+                    [valueField]="'id'" [textField]="'name'"></kendo-dropdownlist>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="Done" formControlName="Done">
+                  <label class="form-check-label" for="Done">
+                    Заполнение завершено
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="text-left">
+      <button type="submit" *ngIf="form.value" class="btn btn-success m-1" [disabled]="form.invalid"
+        (click)="submitClick()"><span><i class="fas fa-save"></i> Сохранить</span>
+      </button>
+
+      <button class="btn btn-danger m-1" role="button" (click)="cancelClick()">
+        <span><i class="fas fa-ban"></i> Отмена</span>
+      </button>
+
+      <kendo-dropdownbutton *ngIf="!isNew"
+        [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+        (itemClick)="downloadClick($event)">
+        <span><i class="fas fa-download"></i> Скачать <i class=" fas fa-chevron-down"></i></span>
+        <ng-template kendoDropDownButtonItemTemplate let-item>
+          <span>{{ item.text }}</span>
+        </ng-template>
+      </kendo-dropdownbutton>
+      <a class="k-button" role="button" (click)="cryptoSign()" *ngIf="canSign()">
+        <span><i class="fas fa-file-signature"></i> Подписать ЭЦП</span>
+      </a>
+    </div>
+  </div>
+</div>

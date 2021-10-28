@@ -1,0 +1,16 @@
+input.ng-dirty.ng-invalid { border: 1px solid #ff0000 }
+input.ng-dirty.ng-valid { border: 1px solid #6bc502 }
+label.control-label {
+  text-align: right;
+  font-weight: bold;
+}
+.additional-nav a{
+  color:white;    
+}
+.col-2.control-label{
+  margin-top:0.5rem;
+}
+.emptyPad{
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}

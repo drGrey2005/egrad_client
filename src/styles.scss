@@ -1,0 +1,87 @@
+$font-size-base:              0.9rem; // Assumes the browser default, typically `16px`
+$line-height-base: 1.2;
+
+// Bootstrap and its default variables
+@import "node_modules/@progress/kendo-theme-bootstrap/scss/all";
+// @import "node_modules/@progress/kendo-theme-bootstrap/grid/_layout";
+// @import "node_modules/@progress/kendo-theme-bootstrap/grid/_theme";
+// @import "node_modules/@progress/kendo-theme-bootstrap/button/_layout";
+// @import "node_modules/@progress/kendo-theme-bootstrap/button/_theme";
+// @import "node_modules/@progress/kendo-theme-bootstrap/calendar/_layout";
+// @import "node_modules/@progress/kendo-theme-bootstrap/calendar/_theme";
+// @import "node_modules/@progress/kendo-theme-bootstrap/common/_all";
+
+//@import "node_modules/bootstrap-scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
+.additional-nav ul{
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+.header{
+    box-shadow: 0 1px 3px #ddd;
+}
+.container.container-footer
+{
+    padding-top:3rem;
+}
+.content-header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content-area{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.egrad-form-control{
+    width: 100%;
+}
+.required-star {
+    margin-left: -10px;
+    float: left;
+}
+.field-error-message{
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.label-required{
+    font-weight: bold;
+}
+.label-required.invalid{
+    color: #dc3545;
+}
+/* .col-form-label{
+    text-align: right;
+} */
+.k-overlay{
+    opacity: 0.01;
+}
+.k-tabstrip .k-tabstrip-items {
+    display: block;
+}
+.k-tabstrip-items .k-item {
+    display: inline-block;
+}
+.brand-container{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.brand-link-container{
+  display: flex;
+  flex-direction: column;
+}
+.brand-link {
+ margin-bottom: 0;
+ line-height: 1rem;
+}
+
+.brand-link-main {
+ margin-top: 0;
+ line-height: 1rem;
+  }
+
+

@@ -1,0 +1,34 @@
+<kendo-dialog-titlebar>
+  <div style="font-size: 18px; line-height: 1.3em;">
+    <span class="k-icon k-i-form-element"></span> Выберите сертификат
+  </div>
+</kendo-dialog-titlebar>
+<div class="container">
+  <div class="alert alert-danger" role="alert" *ngIf="!!pluginNotFound">
+    Для работы ЭЦП необходимо скачать и установить Крипто-Про ЭЦП Browser
+    <a href="https://www.cryptopro.ru/products/cades/plugin/get_2_0">плагин</a> и установить расширение для вашего
+    браузера.
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="!!errorMessage">{{errorMessage}}</div>
+  <fieldset>
+    <kendo-grid [data]="personalCertificates" [loading]="loading" [sortable]="true" [kendoGridSelectBy]="selectionKey"
+      [selectedKeys]="selected" style="min-height:120px">
+      <kendo-grid-column field="SubjectInfo" width="100" title="Владелец"></kendo-grid-column>
+      <kendo-grid-column field="Issuer" width="100" title="Издатель"></kendo-grid-column>
+      <kendo-grid-column field="ValidFrom" width="100" title="Выдан">
+        <ng-template kendoGridCellTemplate let-item>
+          {{item.ValidFrom | date:"shortDate"}}
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="ValidTo" width="100" title="Действителен до">
+        <ng-template kendoGridCellTemplate let-item>
+          {{item.ValidTo | date:"shortDate"}}
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </fieldset>
+</div>
+<kendo-dialog-actions>
+  <button kendoButton (click)="onCancelAction()">Отмена</button>
+  <button kendoButton (click)="onConfirmAction()" [primary]="true" [disabled]="!selected.length">Подписать</button>
+</kendo-dialog-actions>

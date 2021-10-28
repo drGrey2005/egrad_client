@@ -1,0 +1,51 @@
+<nav class="header navbar navbar-dark bg-dark">
+  <div class="brand-container">
+    <a class="navbar-brand" href="/" style="margin-right: 0.5rem">
+      <img src="../../../assets/images/logo_small.png" class="d-inline-block" height="50" />
+    </a>
+    <div class="brand-link-container" style="margin-top: 0.5rem">
+      <a class="navbar-brand" style="margin-left: 0" href="/about">
+        <h6 class="brand-link">Единый государственный реестр</h6>
+        <h6 class="brand-link-main">автомобильных дорог России</h6>
+      </a>
+    </div>
+  </div>
+  <div class="navbar-expand-lg mr-auto">
+    <div class="navbar-nav" *ngIf="currentUser">
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.InfocardView)"
+        routerLinkActive="active" [routerLink]="['', 'infocards']">Инфокарты</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.MyInfocards)"
+        routerLinkActive="active" [routerLink]="['', 'infocards']">Мои инфокарты</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.Infodocs)" routerLinkActive="active"
+        [routerLink]="['', 'infodocs']">Выписки</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.RoadOwners)"
+        routerLinkActive="active" [routerLink]="['', 'road-owners']">Пользователи</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.MyRoadOwner)"
+        routerLinkActive="active" [routerLink]="['', 'road-owner', 'view']">Моя организация</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.ActionLog)" routerLinkActive="active"
+        [routerLink]="['', 'action-log']">Журнал изменений</a>
+      <a class="nav-item nav-link" *ngIf="securityService.hasPermission(actionType.Reports)" routerLinkActive="active"
+        [routerLink]="['', 'reports']">Отчеты</a>
+    </div>
+  </div>
+  <div class="additional-nav">
+    <ul class="list-inline pull-right" *ngIf="!isAuthenticated">
+      <li class="list-inline-item loginLink">
+        <a href="#" [routerLink]="['', 'login']">Вход в систему</a>
+      </li>
+    </ul>
+    <kendo-dropdownbutton [data]="settings" [look]="'outline'" class="bg-dark" (itemClick)="onSettingsClick($event)"
+      *ngIf="isAuthenticated">
+      <span class="text-light"><i class="far fa-user"></i> {{currentUser ? currentUser.username : ''}} <i
+          class=" fas fa-chevron-down"></i></span>
+      <ng-template kendoDropDownButtonItemTemplate let-dataItem>
+        <span style="width: 160px;">{{ dataItem.text }}</span>
+      </ng-template>
+    </kendo-dropdownbutton>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<div kendoDialogContainer></div>
+<div class="my-5">
+  <app-footer></app-footer>
+</div>

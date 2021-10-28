@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <ng-template #infocardListToolbar>
+
+    <button class="btn btn-primary my-1 ml-1" role="button" [routerLink]="['create']" *ngIf="!isArchivePage && canEdit">
+      <span><i class="fas fa-plus"></i> Создать</span>
+    </button>
+
+    <button class="btn btn-success my-1 ml-1" role="button"
+            [routerLink]="['/infocards', infocardGrid.selected[0].id,'edit']"
+            [queryParams]="{mode: getModeFilter(), roadMode: getRoadModeFilter() }" *ngIf="selectedOne">
+      <span><i class="fas fa-pencil-alt"></i> {{!isArchivePage && canEdit ? 'Редактировать' : 'Просмотреть'}}</span>
+    </button>
+
+    <button class="btn btn-danger my-1 ml-1" role="button" (click)="deleteInfocard(infocardGrid.selected[0])"
+            *ngIf="selectedOne && infocardGrid.filterMode === filterModes.Draft && securityService.hasPermission(actionType.InfocardDelete)">
+      <span><i class="fas fa-trash"></i> Удалить</span>
+    </button>
+
+    <kendo-dropdownbutton *ngIf="selectedOne"
+                          [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+                          (itemClick)="downloadCoverClick($event, infocardGrid.selected[0])">
+      <span><i class="fas fa-book"></i> Обложка дела <i class=" fas fa-chevron-down"></i></span>
+      <ng-template kendoDropDownButtonItemTemplate let-item>
+        <span>{{ item.text }}</span>
+      </ng-template>
+    </kendo-dropdownbutton>
+
+    <kendo-dropdownbutton *ngIf="selectedOne"
+                          [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+                          (itemClick)="downloadClick($event, infocardGrid.selected[0])">
+      <span><i class="fas fa-download"></i> Скачать <i class=" fas fa-chevron-down"></i></span>
+      <ng-template kendoDropDownButtonItemTemplate let-item>
+        <span>{{ item.text }}</span>
+      </ng-template>
+    </kendo-dropdownbutton>
+
+    <button class="k-button" (click)="moveToArchive(infocardGrid.selected[0])"
+            *ngIf="infocardGrid.filterMode !== filterModes.Archive && selectedOne && canEdit">
+      <i class="fas fa-pencil-alt"></i>
+      Перенести в архив
+    </button>
+
+    <a class="k-button" role="button" (click)="simpleSign(infocardGrid.selected[0])"
+       *ngIf="infocardGrid.filterMode == filterModes.Draft && selectedOne && securityService.hasPermission(actionType.SimpleSign)">
+      <span><i class="fas fa-file-signature"></i> Перенести в базу инфокарт</span>
+    </a>
+
+    <a class="k-button" role="button" (click)="cryptoSign(infocardGrid.selected[0])" *ngIf="selectedOne
+       && !infocardGrid.selected[0].Archived && !infocardGrid.selected[0].Signed
+       && securityService.hasPermission(actionType.InfocardSign)">
+      <span><i class="fas fa-file-signature"></i> Подписать ЭЦП</span>
+    </a>
+  </ng-template>
+
+  <div class="content-area">
+    <br>
+    <div class="containter pills">
+      <nav class="nav nav-pills nav-fill">
+        <button type="button" class="nav-item btn btn-outline-secondary"
+                [class.active]="infocardGrid.filterMode === filterModes.Base"
+                [disabled]="infocardGrid.filterMode === filterModes.Base" (click)="onModeBtnClick(filterModes.Base)">
+          <span>
+            <i class="fas fa-stream"></i>
+            База инфокарт
+          </span>
+        </button>
+        <button type="button" class="nav-item btn btn-outline-secondary"
+                [class.active]="infocardGrid.filterMode === filterModes.Draft"
+                [disabled]="infocardGrid.filterMode === filterModes.Draft" (click)="onModeBtnClick(filterModes.Draft)">
+          <span>
+            <i class="fab fa-firstdraft"></i>
+            Черновики
+          </span>
+        </button>
+        <button type="button" class="nav-item btn btn-outline-secondary"
+                [class.active]="infocardGrid.filterMode === filterModes.Archive"
+                [disabled]="infocardGrid.filterMode === filterModes.Archive"
+                (click)="onModeBtnClick(filterModes.Archive)">
+          <span>
+            <i class="fas fa-archive"></i>
+            Архив
+          </span>
+        </button>
+      </nav>
+    </div>
+    <div *ngIf="canFilterRoadMode">
+      <div class="containter pills">
+        <nav class="nav nav-pills nav-fill">
+          <button type="button" class="nav-item btn btn-outline-secondary btn-sm"
+                  [class.active]="filterRoadMode === filterRoadModes.Federal"
+                  (click)="onRoadModeBtnClick(filterRoadModes.Federal)">
+            <span><i class="fas fa-road"></i>
+              Федеральные автодороги
+            </span>
+          </button>
+          <button type="button" class="nav-item btn btn-outline-secondary btn-sm"
+                  [class.active]="filterRoadMode === filterRoadModes.Other"
+                  (click)="onRoadModeBtnClick(filterRoadModes.Other)">
+            <span>
+              <i class="fas fa-car"></i>
+              Автомобильные дороги
+            </span>
+          </button>
+        </nav>
+      </div>
+    </div>
+    <app-infocard-grid [toolbar_content]="infocardListToolbar" (dblClick)="onEdit()"></app-infocard-grid>
+  </div>
+</div>

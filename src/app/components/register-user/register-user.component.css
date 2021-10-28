@@ -1,0 +1,12 @@
+input.ng-dirty.ng-invalid { border: 1px solid #ff0000 }
+input.ng-dirty.ng-valid { border: 1px solid #6bc502 }
+
+label.control-label {
+  text-align: right;
+  font-weight: bold;
+}
+
+.form-group.required .col-form-label:after {
+  content:"*";
+  color:red;
+}

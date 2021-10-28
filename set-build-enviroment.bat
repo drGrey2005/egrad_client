@@ -1,0 +1,1 @@
+set HTTP_PROXY=http://gate5:800

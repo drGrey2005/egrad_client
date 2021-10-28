@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ПС "ЕДИНЫЙ ГОСУДАРСТВЕННЫЙ РЕЕСТР АВТОМОБИЛЬНЫХ ДОРОГ"</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon-precomposed" href="~/Content/images/Rosavtodor-144.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="~/Content/images/Rosavtodor-57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="~/Content/images/Rosavtodor-72.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="~/Content/images/Rosavtodor-114.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="~/Content/images/Rosavtodor-144.png"/>
+ 
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=dLmq3zBWd9">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=dLmq3zBWd9">
+  <!-- <link rel="manifest" href="/manifest.json?v=dLmq3zBWd9">  -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+
+    <!-- костыль отсюда https://github.com/telerik/kendo-themes/issues/410 -->
+    <!-- отображение стрелочек сортировки при длинных наименованиях столбцов -->
+    .k-grid-header .k-header>.k-link {
+      padding-right: 1.5em;
+    }
+
+    .k-grid-header .k-header>.k-link>.k-icon.k-i-sort-desc-sm, .k-grid-header .k-header>.k-link>.k-icon.k-i-sort-asc-sm {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0;
+      right: 0.5em;
+    }
+
+    .k-grid-header .k-sort-order {
+      position: absolute;
+      right: 0.25em;
+    }
+  </style>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

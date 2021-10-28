@@ -1,0 +1,25 @@
+p.block{
+    margin: 10px;
+}
+.btn.btn-outline-secondary{
+    color: #6c757d;
+    border-color:  #6c757d;
+}
+.btn-outline-secondary.active{
+    color: white !important;
+    opacity: 1 !important;
+    background-color: #535e6a !important;
+    border-color: #535e6a !important;
+}
+
+.containter.pills{
+  margin: 2px 0px;
+}
+
+.k-button{
+  margin: 0 3px;
+}
+
+kendo-dropdownbutton{
+  margin: 0 3px;
+}

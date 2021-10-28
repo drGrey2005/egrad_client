@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="content-area mt-3">
+    <kendo-grid [style.height.px]="gridHeight" [data]="dataset | async" [loading]="dataset.loading"
+      [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort" [filter]="state.filter" [filterable]="true"
+      [sortable]="true" [pageable]="true" [selectable]="true" [selectedKeys]="selected"
+      [kendoGridSelectBy]="getSelectionKey" [navigable]="true" (dataStateChange)="dataStateChange($event)">
+      <ng-template kendoGridToolbarTemplate [position]="'top'">
+        <a class="k-button {{ noInfocards ? 'k-state-active' : '' }}" role="button"
+          (click)="noInfocardsBtnClick($event)">
+          <span><i class="{{ noInfocards ? 'fas' : 'far' }} fa-circle"></i> Пользователи без инфокарт</span></a>
+        <button class="btn btn-primary ml-1 ng-star-inserted" *ngIf="selected && selected.length === 1" [routerLink]="[selected[0].id,'edit']"
+          role="button">
+          <span><i class="fas fa-pencil-alt"></i>
+            Редактировать</span>
+        </button>
+        <button class="btn btn-outline-danger ml-1 ng-star-inserted" *ngIf="selected && selected.length && canBlockUser(selected[0])" role="button"
+          (click)="deactivateUser(selected[0])"><span><i class="fas fa-lock"></i> Деактивировать</span></button>
+        <button class="btn btn-outline-success ml-1 ng-star-inserted" *ngIf="selected && selected.length && !canBlockUser(selected[0])" role="button"
+          (click)="activateUser(selected[0])"><span><i class="fas fa-lock-open"></i> Aктивировать</span></button>
+        <button class="btn btn-danger ml-1 ng-star-inserted" *ngIf="selected && selected.length && !canBlockUser(selected[0])" role="button"
+          (click)="deleteUser(selected[0])"><span><i class="fas fa-trash"></i> Удалить</span></button>
+      </ng-template>
+      <kendo-grid-column field="Users__username" title="Пользователь" [width]="80">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{ dataItem.Users | usersFormatted }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Email" title="Email" [width]="80">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Phone" title="Телефон" [width]="80">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Organization__Name" title="Организация" [width]="120">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a [routerLink]="[dataItem.id,'edit']">
+            <span><i class="far fa-building"></i> {{ dataItem.Organization.Name}}</span>
+          </a>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Organization__Inn" title="ИНН" [width]="140">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{ dataItem.Organization.Inn }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Position" title="Должность" [width]="150">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="is_active" title="Активен" [width]="100" filter="boolean">
+        <ng-template kendoGridCellTemplate let-item>
+          {{ item.IsActive ? 'Да' : 'Нет' }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="BaseCount" title="База ИК" [width]="70"
+        [style]="{'font-weight': 'bold', 'cursor': 'pointer'}">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-numeric-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-numeric-filter-cell>
+        </ng-template>
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-date-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-date-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span [style.cursor]="'pointer'" [style.color]="getColor('base', dataItem.BaseUpdated)"
+            (click)="countClicked('base', dataItem)">
+            {{ dataItem.BaseCount }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="DraftCount" title="Черновики" [width]="70"
+        [style]="{'font-weight': 'bold', 'cursor': 'pointer'}">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-numeric-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-numeric-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span [style.color]="getColor('draft', dataItem.DraftUpdated)" (click)="countClicked('draft', dataItem)">
+            {{ dataItem.DraftCount }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="ArchiveCount" title="Архив" [width]="70"
+        [style]="{'font-weight': 'bold', 'cursor': 'pointer'}">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-numeric-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
+          </kendo-grid-numeric-filter-cell>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span [style.color]="getColor('archive', dataItem.ArchiveUpdated)"
+            (click)="countClicked('archive', dataItem)">
+            {{ dataItem.ArchiveCount }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+    </kendo-grid>
+  </div>
+</div>

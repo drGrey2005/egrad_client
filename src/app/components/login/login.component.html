@@ -1,0 +1,48 @@
+<nav class="header navbar navbar-dark bg-dark mb-5">
+  <div class="brand-container">
+    <a class="navbar-brand" href="/" style="margin-right: 0.5rem">
+      <img src="../../../assets/images/logo_small.png" class="d-inline-block" height="50" />
+    </a>
+    <div class="brand-link-container" style="margin-top: 0.5rem">
+      <a class="navbar-brand" style="margin-left: 0" href="/about">
+        <h6 class="brand-link">Единый государственный реестр</h6>
+        <h6 class="brand-link-main">автомобильных дорог России</h6>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container container-footer">
+  <div class="row">
+    <div class="col-2"></div>
+    <h3 class="col-6 m-1 emptyPad">Вход в систему</h3>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6 m-1 alert alert-danger" role="alert" *ngIf="!!errorMessage">{{errorMessage}}</div>
+  </div>
+  <div class="p-2">
+    <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
+      <div class="form-group row">
+        <label class="col-2 control-label">Логин</label>
+        <input class="form-control col-6" name="userName" [(ngModel)]="userName" required autofocus />
+      </div>
+      <div class="form-group row">
+        <label class="col-2 control-label">Пароль</label>
+        <input class="form-control col-6" type="password" name="password" [(ngModel)]="password" required />
+      </div>
+      <ul class="text-danger list-unstyled" *ngIf="formSubmitted && form.invalid">
+        <li *ngFor="let error of getFormValidationMessages(form)">{{error}}</li>
+      </ul>
+      <input type="submit" style="visibility: hidden">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6 emptyPad">
+          <button class="btn btn-secondary" routerLink="/about">Назад</button>
+          <button class="btn btn-primary m-1" [disabled]="formSubmitted && form.invalid" type="submit">Войти</button>
+          <button class="btn btn-outline-primary m-1 float-right" [routerLink]="['','register', 'user']">Новый
+            пользователь</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

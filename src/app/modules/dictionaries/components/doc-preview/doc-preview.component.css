@@ -1,0 +1,27 @@
+.report-frame {    
+    width: 100%;
+    height: 450px;
+    border: none;
+    margin: 0px;
+}
+
+.frame-container{
+    flex: 1 auto;
+    flex-direction: column;    
+}
+
+.frame-container > div {
+    flex: 0 auto;
+    margin-bottom:auto;
+    margin-top:auto;
+    margin-left: 10px;
+}
+
+.frame-container > iframe {
+    flex: 1 auto;
+    margin-bottom:auto;
+    margin-top:auto;
+}
+.toolbar{
+    margin-bottom: 10px;
+}

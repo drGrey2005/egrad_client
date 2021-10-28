@@ -1,0 +1,58 @@
+<kendo-grid [data]="view | async" [loading]="editService.loading" [style.height.px]="500" [sortable]="false"
+  [pageable]="false" [selectable]="selectableSettings" [selectedKeys]="selected" [kendoGridSelectBy]="getSelectionKey"
+  [navigable]="true" [egradRowEditing]="createFormGroup" [gridEditService]="editService">
+
+  <ng-template kendoGridToolbarTemplate [position]="'top'" *ngIf="!readonly">
+    <button kendoGridAddCommand class="btn btn-success m-1"><span><i class="fas fa-plus"></i>
+        Добавить</span></button>
+  </ng-template>
+
+  <kendo-grid-column field="id" title="Идентификатор участка А/Д" [hidden]=true></kendo-grid-column>
+
+  <kendo-grid-column field="Name" title="Наименование А/Д"></kendo-grid-column>
+
+  <kendo-grid-column field="Locations" title="Местоположение">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.Locations | oktmoValuesFormatted }}
+    </ng-template>
+    <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup">
+      <app-oktmo-editor [formControl]="formGroup.get(column.field)">
+      </app-oktmo-editor>
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="Length" title="Протяженность, км" editor="numeric"></kendo-grid-column>
+
+  <kendo-grid-column field="Start" title="Начало">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.Start | roadLength }}
+    </ng-template>
+    <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox" />
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="Finish" title="Конец">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.Finish | roadLength }}
+    </ng-template>
+    <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
+      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox" />
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Действия" *ngIf="!readonly">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+      <div class="btn-toolbar">
+        <button class="btn btn-primary btn-sm" kendoGridEditCommand [primary]="true"><span><i class="fas fa-edit"></i>
+            Редактировать</span></button>
+        <button class="btn btn-danger btn-sm" kendoGridRemoveCommand><span><i class="fas fa-times"></i>
+            Удалить</span></button>
+        <button class="btn btn-primary btn-sm" kendoGridSaveCommand [disabled]="formGroup?.invalid">
+          <span><i class="fas fa-save"></i> Сохранить</span></button>
+        <button class="btn btn-secondary btn-sm" kendoGridCancelCommand>
+          <span><i class="fas fa-undo"></i> Отмена</span></button>
+      </div>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

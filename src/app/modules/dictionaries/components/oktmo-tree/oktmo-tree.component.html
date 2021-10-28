@@ -1,0 +1,29 @@
+<div class="card" style="margin-bottom: 0.5rem">
+  <div class="card-body" style="padding: 0.2rem">
+    <ul class="list-inline">
+      <li class="k-button list-inline-item badge badge-pill badge-info" style="cursor: default;"
+          *ngFor="let item of checkedItems; let i=index">
+        <span>
+          {{item.Name2}}
+        </span>
+        <span class="k-icon k-i-close" style="cursor: pointer;" (click)="removeItem(item)"></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<form [formGroup]="formGroup" (submit)="search()">
+  <div class="input-group">
+    <input type="text" class="form-control" formControlName="filter" placeholder="Поиск...">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+    </span>
+  </div>
+</form>
+<kendo-treeview [nodes]="data | async" [textField]="['Name2']" kendoTreeViewExpandable
+                [kendoTreeViewCheckable]="checkableSettings" [checkBy]="checkBy" [(checkedKeys)]="checkedKeys"
+                (checkedChange)="handleChecking($event)" [hasChildren]="hasChildren" [children]="fetchChildren">
+  <ng-template kendoTreeViewNodeTemplate let-dataItem>
+    {{ dataItem.Name2 + ' (' + dataItem.Code + ')' }}
+  </ng-template>
+</kendo-treeview>

@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="content-area">
+    <div class="content-header">
+      <h3>Миграция данных</h3>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-4">
+        <input type="text" class="form-control" placeholder="Файл не выбран" [value]="files[files.length-1]?.name"
+          disabled>
+        <div class="input-group-append">
+          <button ngfSelect multiple="1" [accept]="accept" [(files)]="files" class="btn btn-success"
+            type="button">Выбрать</button>
+        </div>
+      </div>
+    </div>
+    <div class="row ml-2">
+      <button type="button" class="btn btn-primary" [disabled]="!files.length"
+        (click)="uploadFile(files[files.length-1])">Импортировать
+        данные</button>
+    </div>
+  </div>
+</div>

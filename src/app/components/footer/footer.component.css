@@ -1,0 +1,18 @@
+.footer{
+    padding-top: 0;
+    padding-bottom: 0;   
+}
+.footer  a {
+    font-weight:300;
+}
+.container-footer{
+  margin-bottom: 80px;
+}
+.navbar.fixed-bottom{
+  padding-top: 0;
+  padding-bottom:0;
+}
+
+.navbar.fixed-bottom ul{
+    margin-bottom: 0.5rem;
+  }

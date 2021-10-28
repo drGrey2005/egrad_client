@@ -1,0 +1,13 @@
+.form-group.row.infocardGrid{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+textarea{
+    width: 100%;
+}
+.k-button{
+  margin: 0 3px;
+}
+kendo-dropdownbutton{
+  margin: 0 3px;
+}

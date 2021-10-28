@@ -1,0 +1,18 @@
+<div class="container-fluid mt-3">
+  <div class="content-area">
+    <kendo-grid [data]="data" [sortable]="false" [pageable]="false" [selectable]="false">
+      <kendo-grid-column field="id" title="Идентификатор" [hidden]="true"></kendo-grid-column>
+      <kendo-grid-column field="name" title="Наименование отчета" [width]="250"></kendo-grid-column>
+      <kendo-grid-column field="params_titled" title="Выбранные параметры отчета"></kendo-grid-column>
+      <kendo-grid-command-column title="Действия" [width]="200">
+        <ng-template kendoGridCellTemplate let-item>
+          <div class="btn-toolbar">
+            <button class="btn btn-primary btn-sm" (click)="generateReport(item)">
+              <span><i class="fas fa-edit"></i> Сгенерировать отчет</span>
+            </button>
+          </div>
+        </ng-template>
+      </kendo-grid-command-column>
+    </kendo-grid>
+  </div>
+</div>

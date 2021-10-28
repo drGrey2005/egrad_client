@@ -1,0 +1,16 @@
+<!-- <kendo-dialog-titlebar>
+  <div class="container">
+    <span>{{title}} </span><a [href]="downloadUrl"><i class="fas fa-download"></i></a>
+  </div>
+</kendo-dialog-titlebar> -->
+
+<div class="container">
+  <div><a [href]="downloadUrl" role="button"><i class="fas fa-download"></i> Скачать</a></div>
+  <div class="frame-container content-container">
+    <iframe #reportHtmlViewer class="report-frame" type="text/html"></iframe>
+
+    <span *ngIf="loading">
+      <i class="fas fa-spinner"></i> Загрузка ...
+    </span>
+  </div>
+</div>

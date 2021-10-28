@@ -1,0 +1,281 @@
+<div class="container-fluid" *ngIf='!errorMessage'>
+  <div class="content-area">
+    <div class="content-header">
+      <h3 *ngIf="!isNew">Редактирование инфокарты <span class="badge badge-pill badge-info">
+          {{isArchived
+        ? 'Архив'
+        : !isSigned
+          ? 'Черновик' : 'База инфокарт'}}</span></h3>
+      <h3 *ngIf="isNew">Создание инфокарты</h3>
+      <div>
+        <h2>{{roadName}}</h2>
+      </div>
+    </div>
+
+    <kendo-tabstrip>
+      <kendo-tabstrip-tab [title]="'Основное'" [selected]="true">
+        <ng-template kendoTabContent>
+          <div class="card row border-0">
+            <div class="card-body">
+              <form [formGroup]="infocardForm">
+                <fieldset>
+                  <div class="row">
+                    <input hidden type="text" class="k-textbox form-control" formControlName="id"/>
+
+                    <app-infocard-field [form]="infocardForm" label="Значение">
+                      <kendo-dropdownlist #editControl [data]="roadImportance" [valuePrimitive]="true"
+                                          [textField]="'text'" [valueField]="'value'" formControlName="RoadImportance"
+                                          [appValidationMessageFor]="infocardForm">
+                      </kendo-dropdownlist>
+                    </app-infocard-field>
+                    <app-infocard-field [form]="infocardForm" label="Реестровый номер АД">
+                      <input #editControl type="text" class="k-textbox" formControlName="RegNumber"
+                             [appValidationMessageFor]="infocardForm"/>
+                    </app-infocard-field>
+
+                    <div class="form-group col-md-6">
+                      <div class="row" *ngIf="!isRoadFromList">
+                        <label class="col-md-4 col-form-label label-required"
+                               [class.invalid]="isControlInvalid('RoadName')">Наименование АД</label>
+                        <div class="col-md-8" k-required>
+                          <input type="text" class="k-textbox egrad-form-control" formControlName="RoadName"
+                                 [placeholder]="infocardForm.value.RoadImportance == 'L' ? 'Поселок улица' : ''"
+                                 [appValidationMessageFor]="infocardForm"/>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="isRoadFromList">
+                        <label class="col-md-4 col-form-label label-required"
+                               [class.invalid]="isControlInvalid('RoadName')">Наименование АД</label>
+                        <div class="col-md-8">
+                          <kendo-dropdownlist #roadNameDropdown class="egrad-form-control" [data]="federalRoads"
+                                              [valuePrimitive]="true" [textField]="'RoadName'" [valueField]="'RoadName'"
+                                              formControlName="RoadName" [filterable]="true"
+                                              (filterChange)="onFilterChange($event)"
+                                              [appValidationMessageFor]="infocardForm"
+                                              (selectionChange)="roadNameChange($event)"
+                          >
+                          </kendo-dropdownlist>
+                        </div>
+                      </div>
+                    </div>
+                    <app-infocard-field [form]="infocardForm" label="Дата внесения в реестр">
+                      <kendo-datepicker #editControl formControlName="EnterDate" [format]="'dd-MM-yyyy'"
+                                        [appValidationMessageFor]="infocardForm">
+                      </kendo-datepicker>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Идентификационный номер АД">
+                      <input #editControl type="text" class="k-textbox" formControlName="RoadNumber"
+                             [appValidationMessageFor]="infocardForm"/>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Собственник">
+                      <kendo-dropdownlist #editControl class="egrad-form-control" [data]="owners"
+                                          [valuePrimitive]="true" [textField]="'Name'" [valueField]="'id'"
+                                          formControlName="owner"
+                                          [appValidationMessageFor]="infocardForm">
+                      </kendo-dropdownlist>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Протяженность, км">
+                      <kendo-numerictextbox #editControl [format]="'n3'" formControlName="RoadLength"
+                                            [appValidationMessageFor]="infocardForm">
+                      </kendo-numerictextbox>
+                    </app-infocard-field>
+
+                    <div class="form-group col-md-6">
+                      <div class="row">
+                        <label class="col-md-4 col-form-label">Комментарий к протяженности</label>
+                        <div class="col-md-8">
+                          <textarea kendoTextArea formControlName="LengthComment"></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <app-infocard-field [form]="infocardForm" label="Техническая категория">
+                      <kendo-multiselect #editControl class="egrad-form-control" [data]="roadCategories"
+                                         [valuePrimitive]="true" [textField]="'text'" [valueField]="'value'"
+                                         formControlName="RoadCategory" [appValidationMessageFor]="infocardForm">
+                      </kendo-multiselect>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Класс">
+                      <kendo-multiselect #editControl class="egrad-form-control" [data]="roadClasses"
+                                         [valuePrimitive]="true" [textField]="'text'" [valueField]="'value'"
+                                         formControlName="RoadClass"
+                                         [appValidationMessageFor]="infocardForm">
+                      </kendo-multiselect>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Вид разрешенного использования">
+                      <kendo-dropdownlist #editControl class="egrad-form-control" [data]="roadUsageTypes"
+                                          [valuePrimitive]="true" [textField]="'text'" [valueField]="'value'"
+                                          formControlName="RoadUsingType" [appValidationMessageFor]="infocardForm">
+                      </kendo-dropdownlist>
+                    </app-infocard-field>
+
+                    <app-infocard-field [form]="infocardForm" label="Месторасположение">
+                      <app-oktmo-editor #editControl formControlName="Locations"
+                                        [appValidationMessageFor]="infocardForm">
+                      </app-oktmo-editor>
+                    </app-infocard-field>
+
+                    <div class="form-group col-md-6">
+                      <div class="row">
+                        <label class="col-md-4 col-form-label">Дата ввода в эксплуатацию</label>
+                        <div class="col-md-8">
+                          <kendo-datepicker formControlName="CommDate" [format]="'yyyy'" [bottomView]="'decade'"
+                                            [topView]="'decade'">
+                          </kendo-datepicker>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="row">
+                        <label class="col-md-4 col-form-label">Балансовая стоимость, тыс.руб.</label>
+                        <div class="col-md-8">
+                          <kendo-numerictextbox [spinners]="false" [format]="'n3'" formControlName="BookCost"
+                                                [appValidationMessageFor]="infocardForm">
+                          </kendo-numerictextbox>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <div class="row">
+                        <label class="col-md-4 col-form-label">Остаточная стоимость, тыс.руб.</label>
+                        <div class="col-md-8">
+                          <kendo-numerictextbox [spinners]="false" [format]="'n3'" formControlName="ResidualValue"
+                                                [appValidationMessageFor]="infocardForm">
+                          </kendo-numerictextbox>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <div class="row">
+                        <label class="col-md-4 col-form-label">Дата остаточной стоимости</label>
+                        <div class="col-md-8">
+                          <kendo-datepicker formControlName="ResidualValueDate" [format]="'dd-MM-yyyy'">
+                          </kendo-datepicker>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6" *ngIf="isArchived">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label"> Причина переноса в архив </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="k-textbox egrad-form-control" formControlName="ArchiveReason"/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-6" *ngIf="isArchived">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label"> Размещение бумажного дела </label>
+                        <div class="col-sm-8">
+                          <input type="text" class="k-textbox egrad-form-control" formControlName="CaseLocation"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="text-left">
+                  <button type="submit" *ngIf="canEdit && !isSigned" class="btn btn-success m-1"
+                          [disabled]="isFormSubmitted && infocardForm.invalid" (click)="submitClick()"><span><i
+                    class="fas fa-save"></i>
+                      Сохранить</span></button>
+
+                  <button type="submit" *ngIf="canEdit" class="btn btn-success m-1"
+                          [disabled]="isFormSubmitted && infocardForm.invalid" (click)="submitClick(true)"><span><i
+                    class="fas fa-save"></i>
+                      Сохранить и подписать ЭЦП</span></button>
+
+                  <a class="btn btn-danger m-1" role="button" [routerLink]="['/infocards']"
+                     queryParamsHandling="preserve">
+                    <span><i class="fas {{canEdit ? 'fa-ban' : 'fa-backward'}}"></i>
+                      {{canEdit ? 'Отмена' : 'Назад'}}</span>
+                  </a>
+                  <button *ngIf="isArchived && hasWriteRights" class="btn btn-primary m-1"
+                          (click)="changeDocumentLocation()"><span><i class="fas fa-paper-plane"></i> Изменить размещение
+                      бумажного дела</span></button>
+
+                  <kendo-dropdownbutton
+                    *ngIf="!isNew"
+                    [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+                    (itemClick)="downloadCoverClick($event)">
+                    <span><i class="fas fa-book"></i> Обложка дела <i class=" fas fa-chevron-down"></i></span>
+                    <ng-template kendoDropDownButtonItemTemplate let-item>
+                      <span>{{ item.text }}</span>
+                    </ng-template>
+                  </kendo-dropdownbutton>
+
+                  <kendo-dropdownbutton
+                    *ngIf="!isNew"
+                    [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+                    (itemClick)="downloadClick($event)">
+                    <span><i class="fas fa-download"></i> Скачать <i class=" fas fa-chevron-down"></i></span>
+                    <ng-template kendoDropDownButtonItemTemplate let-item>
+                      <span>{{ item.text }}</span>
+                    </ng-template>
+                  </kendo-dropdownbutton>
+
+                  <a class="k-button" role="button" (click)="cryptoSign()"
+                     *ngIf="!isNew && !isArchived && !isSigned && securityService.hasPermission(actionType.InfocardSign)">
+                    <span><i class="fas fa-file-signature"></i> Подписать ЭЦП</span>
+                  </a>
+                  <!--                  <a class="k-button" role="button" (click)="simpleSign()"-->
+                  <!--                     *ngIf="!isNew && !isArchived && !isSigned && securityService.hasPermission(actionType.SimpleSign)">-->
+                  <!--                    <span><i class="fas fa-file-signature"></i> Перенести в базу инфокарт</span>-->
+                  <!--                  </a>-->
+                </div>
+              </form>
+            </div>
+          </div>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <kendo-tabstrip-tab [title]="'Участки'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-section [infocardId]="infocardForm.value.id" [readonly]="!canEdit">
+          </app-road-section>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <!-- <kendo-tabstrip-tab [title]="'Участки по классам'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-section [selectedMode]="'ByClass'" [infocardId]="infocardForm.value.id" [readonly]="!canEdit">
+          </app-road-section>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <kendo-tabstrip-tab [title]="'Участки по виду разрешенного использования'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-section [selectedMode]="'ByUsingType'" [infocardId]="infocardForm.value.id" [readonly]="!canEdit">
+          </app-road-section>
+        </ng-template>
+      </kendo-tabstrip-tab> -->
+      <kendo-tabstrip-tab [title]="'Участки по местоположению'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-place [infocardId]="infocardForm.value.id" [readonly]="!canEdit"></app-road-place>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <kendo-tabstrip-tab [title]="'Участки по дате ввода в эксплуатацию'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-date [infocardId]="infocardForm.value.id" [readonly]="!canEdit">
+          </app-road-date>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <kendo-tabstrip-tab [title]="'Платные участки'" *ngIf="isRoadPartTabsVisible">
+        <ng-template kendoTabContent>
+          <app-road-toll [infocardId]="infocardForm.value.id" [readonly]="!canEdit"></app-road-toll>
+        </ng-template>
+      </kendo-tabstrip-tab>
+      <kendo-tabstrip-tab [title]="'Документы'" *ngIf="!isNew">
+        <ng-template kendoTabContent>
+          <app-document [infocardId]="infocardForm.value.id" [readonly]="!canEdit"></app-document>
+        </ng-template>
+      </kendo-tabstrip-tab>
+    </kendo-tabstrip>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>

@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="content-area">
+    <h3 class="p-1">Регистрация нового пользователя</h3>
+    <div class="alert alert-danger" role="alert" *ngIf="!!errorMessage">{{errorMessage}}</div>
+    <div class="p-2">
+      <form novalidate #form="ngForm" (ngSubmit)="register(form)">
+        <fieldset>
+          <input type="submit" style="visibility: hidden">
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Логин</label>
+            <div class="col-md-8">
+              <input class="form-control" #userName="ngModel" name="userName" [(ngModel)]="user.username" required
+                pattern="^[A-Za-z0-9]+$" autofocus />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && userName.invalid">
+                <li *ngFor="let error of getValidationMessages(userName, 'Логин')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Пароль</label>
+            <div class="col-md-8 row">
+              <div class="col-md-4">
+                <input class="form-control" #password="ngModel" type="password" name="password"
+                  [(ngModel)]="user.password" required>
+                <ul class="text-danger list-unstyled" *ngIf="formSubmitted && password.invalid">
+                  <li *ngFor="let error of getValidationMessages(password, 'Пароль')">{{error}}</li>
+                </ul>
+              </div>
+              <label class="col-md-4 col-form-label">Подтверждение пароля</label>
+              <div class="col-md-4">
+                <input class="form-control" #password_confirm="ngModel" type="password" name="password_confirm" ngModel
+                  required>
+                <ul class="text-danger list-unstyled" *ngIf="formSubmitted && password_confirm.invalid">
+                  <li *ngFor="let error of getValidationMessages(password_confirm, 'Подтверждение пароля')">{{error}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Электронная почта</label>
+            <div class="col-md-8">
+              <input class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" type="email" email
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && email.invalid">
+                <li *ngFor="let error of getValidationMessages(email, 'Электронная почта')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Имя</label>
+            <div class="col-md-8">
+              <input class="form-control" #firstName="ngModel" name="firstName" [(ngModel)]="user.first_name"
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && firstName.invalid">
+                <li *ngFor="let error of getValidationMessages(firstName, 'Подтверждение пароля')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Фамилия</label>
+            <div class="col-md-8">
+              <input class="form-control" #lastName="ngModel" name="lastName" [(ngModel)]="user.last_name" required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && lastName.invalid">
+                <li *ngFor="let error of getValidationMessages(lastName, 'Подтверждение пароля')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-2 col-form-label">Телефон</label>
+            <div class="col-md-8">
+              <input class="form-control" #userPhone="ngModel" name="userPhone" [(ngModel)]="user.user_phone"
+                required />
+              <ul class="text-danger list-unstyled" *ngIf="formSubmitted && userPhone.invalid">
+                <li *ngFor="let error of getValidationMessages(userPhone, 'Подтверждение пароля')">{{error}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="radio">
+                <label for="userType1" class="form-check-label">
+                  <input type="radio" name="userType" id="userType1" value="person" [(ngModel)]="userType">
+                  Физическое лицо или ИП
+                </label>
+              </div>
+              <div class="radio mb-4">
+                <label for="userType2" class="form-check-label">
+                  <input type="radio" name="userType" id="userType2" value="organization" [(ngModel)]="userType">
+                  Юридическое лицо
+                </label>
+              </div>
+              <div abRecaptcha key="public key" name="captcha"></div>
+            </div>
+          </div>
+        </fieldset>
+        <div>
+          <button class="btn btn-secondary m-1" [routerLink]="['', 'login']">Назад</button>
+          <button class="btn btn-primary m-1" [disabled]="formSubmitted && form.invalid"
+            type="submit">Зарегистрировать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
