@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { OktmoAPIService } from 'src/app/webapi/api/oktmo.service';
-import { Observable } from 'rxjs';
-import { OktmoDTO } from 'src/app/webapi/models/oktmo.dto';
-import { State } from '@progress/kendo-data-query';
-import { ResponseData } from 'src/app/webapi/models/response-data.dto';
-import { map, tap } from 'rxjs/operators';
-import { CheckableSettings, TreeItemLookup } from '@progress/kendo-angular-treeview';
-import { FormControl, FormGroup } from '@angular/forms';
+import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
+import {OktmoAPIService} from 'src/app/webapi/api/oktmo.service';
+import {Observable} from 'rxjs';
+import {OktmoDTO} from 'src/app/webapi/models/oktmo.dto';
+import {State} from '@progress/kendo-data-query';
+import {ResponseData} from 'src/app/webapi/models/response-data.dto';
+import {map, tap} from 'rxjs/operators';
+import {CheckableSettings, TreeItemLookup} from '@progress/kendo-angular-treeview';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-oktmo-tree',
@@ -28,6 +28,7 @@ export class OktmoTreeComponent implements OnInit {
     this._checkedItems = value.slice();
     this.checkedKeys = this._checkedItems.map(x => x.id);
   }
+
   public get checkedItems(): OktmoDTO[] {
     return this._checkedItems;
   }
@@ -35,7 +36,7 @@ export class OktmoTreeComponent implements OnInit {
   public onlyTopLevel = false;
   public checkedKeys: number[];
 
-  public checkBy({ dataItem }) {
+  public checkBy({dataItem}) {
     return (<OktmoDTO>dataItem).id;
   }
 
@@ -43,14 +44,15 @@ export class OktmoTreeComponent implements OnInit {
     const existIdx = this.findContainsIndex(itemLookup.item.dataItem);
     if (existIdx > -1) {
       this.checkedItems.splice(existIdx, 1);
-    }
-    else {
+    } else {
       this.checkedItems.push(itemLookup.item.dataItem);
     }
   }
 
   private findContainsIndex(dataItem: OktmoDTO): number {
-    return this.checkedItems.findIndex(function (oktmo) { return dataItem.id === oktmo.id; });
+    return this.checkedItems.findIndex(function (oktmo) {
+      return dataItem.id === oktmo.id;
+    });
   }
 
   public get checkableSettings(): CheckableSettings {
@@ -106,7 +108,11 @@ export class OktmoTreeComponent implements OnInit {
 }
 
 function sortByName(o1: OktmoDTO, o2: OktmoDTO): number {
-  if (o1.Name2 < o2.Name2) { return -1; }
-  if (o1.Name2 > o2.Name2) { return 1; }
+  if (o1.Name2 < o2.Name2) {
+    return -1;
+  }
+  if (o1.Name2 > o2.Name2) {
+    return 1;
+  }
   return 0;
 }

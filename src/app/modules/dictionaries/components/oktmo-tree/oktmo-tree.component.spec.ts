@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OktmoTreeComponent } from './oktmo-tree.component';
+import {OktmoTreeComponent} from './oktmo-tree.component';
 
 describe('OktmoTreeComponent', () => {
   let component: OktmoTreeComponent;

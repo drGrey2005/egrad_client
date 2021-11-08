@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArchiveReasonComponent } from './archive-reason.component';
+import {ArchiveReasonComponent} from './archive-reason.component';
 
 describe('ArchiveReasonComponent', () => {
   let component: ArchiveReasonComponent;

@@ -1,6 +1,6 @@
-import { BaseModelDTO } from './base-model.dto';
-import { SignerDTO } from './signer.dto';
-import { InfocardDocDTO } from './infocard-doc.dto';
+import {BaseModelDTO} from './base-model.dto';
+import {SignerDTO} from './signer.dto';
+import {InfocardDocDTO} from './infocard-doc.dto';
 
 export class InfodocDTO extends BaseModelDTO {
   public RequestorType: string;

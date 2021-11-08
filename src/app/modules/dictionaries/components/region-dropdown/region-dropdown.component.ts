@@ -1,7 +1,7 @@
-import { Component, OnInit, forwardRef, ElementRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RegionAPIService } from 'src/app/webapi/api/region.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Component, ElementRef, forwardRef, OnInit} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {RegionAPIService} from 'src/app/webapi/api/region.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 export const CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -25,6 +25,7 @@ export class RegionDropdownComponent implements ControlValueAccessor, OnInit {
   public get selectedItems() {
     return this._selectedItems;
   }
+
   public displayValue: string;
 
   get input(): HTMLInputElement {
@@ -34,7 +35,8 @@ export class RegionDropdownComponent implements ControlValueAccessor, OnInit {
   public view: Observable<any>;
   private dataService: BehaviorSubject<any>;
 
-  constructor(private host: ElementRef, private apiService: RegionAPIService) { }
+  constructor(private host: ElementRef, private apiService: RegionAPIService) {
+  }
 
   ngOnInit() {
     this.dataService = new BehaviorSubject(null);
@@ -48,6 +50,7 @@ export class RegionDropdownComponent implements ControlValueAccessor, OnInit {
       this.selectedItems = obj;
     }
   }
+
   registerOnChange(fn: any): void {
     this._changeCallback = fn;
   }
@@ -60,9 +63,11 @@ export class RegionDropdownComponent implements ControlValueAccessor, OnInit {
     this.input.disabled = isDisabled;
   }
 
-  private _changeCallback = (data: any) => { };
+  private _changeCallback = (data: any) => {
+  };
 
-  private _onTouchedCallback = () => { };
+  private _onTouchedCallback = () => {
+  };
 
 
 }

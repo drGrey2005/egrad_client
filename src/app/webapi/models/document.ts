@@ -1,4 +1,4 @@
-import { BaseModelDTO } from './base-model.dto';
+import {BaseModelDTO} from './base-model.dto';
 
 export class DocumentDTO extends BaseModelDTO {
   public Infocard: number;

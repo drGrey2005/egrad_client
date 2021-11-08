@@ -1,4 +1,4 @@
-import { BaseModelDTO } from './base-model.dto';
+import {BaseModelDTO} from './base-model.dto';
 
 export class InfocardDocDTO extends BaseModelDTO {
   public RegNumber: string;
@@ -7,6 +7,7 @@ export class InfocardDocDTO extends BaseModelDTO {
   public RoadNumber: string;
   public Parts: Array<string>;
   public Status: string;
+
   constructor(data: any) {
     super(data);
 

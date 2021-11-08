@@ -1,5 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { KmAndMConverter } from '../services/km-and-m.converter';
+import {Pipe, PipeTransform} from '@angular/core';
+import {KmAndMConverter} from '../services/km-and-m.converter';
+
 /*
  * Формат начала/конца участка А/Д.
  * Usage:
@@ -8,17 +9,17 @@ import { KmAndMConverter } from '../services/km-and-m.converter';
  *   {{ "2.032" | roadLength }}
  *   formats to: 2+032 км
 */
-@Pipe({ name: 'roadLength' })
+@Pipe({name: 'roadLength'})
 export class RoadLengthPipe implements PipeTransform {
-    constructor(private converterService: KmAndMConverter) {
+  constructor(private converterService: KmAndMConverter) {
+  }
+
+  transform(value: string): string {
+    const result = this.converterService.transform(value);
+    if (!result) {
+      return result;
     }
 
-    transform(value: string): string {
-        const result = this.converterService.transform(value);
-        if (!result) {
-            return result;
-        }
-
-        return `${result} км`;
-    }
+    return `${result} км`;
+  }
 }

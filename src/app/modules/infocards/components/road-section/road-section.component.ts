@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, ViewChild, Renderer2, OnDestroy } from '@angular/core';
-import { GridDataResult, GridComponent, RowArgs, SelectableSettings } from '@progress/kendo-angular-grid';
-import { RoadSectionDTO } from 'src/app/webapi/models/road-section.dto';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { RoadCommons } from '../../../dictionaries/models/road-commons';
-import { RoadSectionEditService } from '../../services/road-section-edit.service';
-import { map } from 'rxjs/operators';
-import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {GridDataResult, RowArgs, SelectableSettings} from '@progress/kendo-angular-grid';
+import {RoadSectionDTO} from 'src/app/webapi/models/road-section.dto';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {RoadCommons} from '../../../dictionaries/models/road-commons';
+import {RoadSectionEditService} from '../../services/road-section-edit.service';
+import {map} from 'rxjs/operators';
+import {DialogService} from '@progress/kendo-angular-dialog';
 import '../../../dictionaries/directives/egrad-row-editing.directive';
+
 const arrayToObject = (array) =>
   array.reduce((obj, item) => {
     obj[item['value']] = item;
@@ -66,7 +67,7 @@ export class RoadSectionComponent implements OnInit, OnDestroy {
   }
 
   public createFormGroup(args: any): FormGroup {
-    const item = args.isNew ? new RoadSectionDTO({ 'Infocard': this.infocardId, 'Length': 0 }) : args.dataItem;
+    const item = args.isNew ? new RoadSectionDTO({'Infocard': this.infocardId, 'Length': 0}) : args.dataItem;
 
     this.formGroup = this.formBuilder.group({
       'id': item.id,

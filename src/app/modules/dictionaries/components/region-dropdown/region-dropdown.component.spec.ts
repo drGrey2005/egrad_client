@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RegionDropdownComponent } from './region-dropdown.component';
+import {RegionDropdownComponent} from './region-dropdown.component';
 
 describe('RegionDropdownComponent', () => {
   let component: RegionDropdownComponent;
@@ -8,9 +8,9 @@ describe('RegionDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegionDropdownComponent ]
+      declarations: [RegionDropdownComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

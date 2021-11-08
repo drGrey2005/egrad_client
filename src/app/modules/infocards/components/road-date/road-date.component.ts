@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { RoadDateDTO } from 'src/app/webapi/models/road-date.dto';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { SelectableSettings, GridDataResult, RowArgs } from '@progress/kendo-angular-grid';
-import { map } from 'rxjs/operators';
-import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
-import { RoadDateEditService } from '../../services/road-date-edit.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {RoadDateDTO} from 'src/app/webapi/models/road-date.dto';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GridDataResult, RowArgs, SelectableSettings} from '@progress/kendo-angular-grid';
+import {map} from 'rxjs/operators';
+import {DialogService} from '@progress/kendo-angular-dialog';
+import {RoadDateEditService} from '../../services/road-date-edit.service';
 
 @Component({
   selector: 'app-road-date',
@@ -42,12 +42,13 @@ export class RoadDateComponent implements OnInit {
     this.editService.id = this.infocardId;
     this.editService.read();
   }
+
   public getSelectionKey(context: RowArgs): any {
     return context.dataItem;
   }
 
   public createFormGroup(args: any): FormGroup {
-    const item = args.isNew ? new RoadDateDTO({ 'Infocard': this.infocardId }) : args.dataItem;
+    const item = args.isNew ? new RoadDateDTO({'Infocard': this.infocardId}) : args.dataItem;
 
     this.formGroup = this.formBuilder.group({
       'id': item.id,

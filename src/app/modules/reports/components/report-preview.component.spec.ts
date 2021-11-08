@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ReportPreviewComponent } from './report-preview.component';
+import {ReportPreviewComponent} from './report-preview.component';
 
 describe('ReportPreviewComponent', () => {
   let component: ReportPreviewComponent;
@@ -8,9 +8,9 @@ describe('ReportPreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportPreviewComponent ]
+      declarations: [ReportPreviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

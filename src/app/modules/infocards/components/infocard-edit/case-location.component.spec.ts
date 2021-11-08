@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CaseLocationComponent } from './case-location.component';
+import {CaseLocationComponent} from './case-location.component';
 
 describe('PaperPlaceComponent', () => {
   let component: CaseLocationComponent;

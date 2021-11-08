@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="content-area">
     <kendo-dropdownbutton kendoButton [data]="saveAsOptions" [look]="'outline'" class="my-3 ml-3 mr-1"
-      (itemClick)="onSaveAsClick($event)">
+                          (itemClick)="onSaveAsClick($event)">
       <span><i class="fas fa-save"></i> Скачать как ... <i class=" fas fa-chevron-down"></i>
       </span>
       <ng-template kendoDropDownButtonItemTemplate let-dataItem>
@@ -9,7 +9,8 @@
       </ng-template>
     </kendo-dropdownbutton>
     <button type="button" class="btn btn-outline-dark" (click)="printReport()"><i class=" fas fa-print"></i>
-      Печать</button>
+      Печать
+    </button>
     <div class="frame-container content-container">
       <iframe #reportHtmlViewer class="report-frame" type="text/html"></iframe>
     </div>

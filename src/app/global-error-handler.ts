@@ -1,7 +1,7 @@
-import { ErrorHandler } from '@angular/core';
-import { Response } from '@angular/http';
-import { NotificationService } from '@progress/kendo-angular-notification';
-import { HttpErrorResponse } from '@angular/common/http';
+import {ErrorHandler} from '@angular/core';
+import {Response} from '@angular/http';
+import {NotificationService} from '@progress/kendo-angular-notification';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export class GlobalErrorHandler extends ErrorHandler {
 
@@ -36,9 +36,9 @@ export class GlobalErrorHandler extends ErrorHandler {
     this.notificationService.show({
       cssClass: 'error-container',
       content: errMsg,
-      animation: { type: 'slide', duration: 400 },
-      position: { horizontal: 'center', vertical: 'top' },
-      type: { style: 'error', icon: true },
+      animation: {type: 'slide', duration: 400},
+      position: {horizontal: 'center', vertical: 'top'},
+      type: {style: 'error', icon: true},
       closable: false
     });
   }

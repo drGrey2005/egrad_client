@@ -1,16 +1,16 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { State } from '@progress/kendo-data-query';
-import { DataStateChangeEvent, RowArgs } from '@progress/kendo-angular-grid';
+import {Component, OnInit, HostListener} from '@angular/core';
+import {State} from '@progress/kendo-data-query';
+import {DataStateChangeEvent, RowArgs} from '@progress/kendo-angular-grid';
 
-import { GridDataset } from 'src/app/modules/commons/services/grid-dataset';
-import { RoadOwnerDTO } from 'src/app/webapi/models/road-owner.dto';
-import { RoadOwnerAPIService } from 'src/app/webapi/api/road-onwer.service';
-import { GridFilterService } from 'src/app/modules/commons/services/grid-filter.service';
-import { ColorIndicatorAPIService } from 'src/app/webapi/api/color-indicator.service';
-import { ColorIndicatorDTO } from 'src/app/webapi/models/color-indicator.dto';
-import { InfocardGridComponent } from 'src/app/modules/dictionaries/components/infocard-grid/infocard-grid.component';
-import { DialogService } from '@progress/kendo-angular-dialog';
-import { NotifyService } from 'src/app/modules/commons/services/notify.service';
+import {GridDataset} from 'src/app/modules/commons/services/grid-dataset';
+import {RoadOwnerDTO} from 'src/app/webapi/models/road-owner.dto';
+import {RoadOwnerAPIService} from 'src/app/webapi/api/road-onwer.service';
+import {GridFilterService} from 'src/app/modules/commons/services/grid-filter.service';
+import {ColorIndicatorAPIService} from 'src/app/webapi/api/color-indicator.service';
+import {ColorIndicatorDTO} from 'src/app/webapi/models/color-indicator.dto';
+import {InfocardGridComponent} from 'src/app/modules/dictionaries/components/infocard-grid/infocard-grid.component';
+import {DialogService} from '@progress/kendo-angular-dialog';
+import {NotifyService} from 'src/app/modules/commons/services/notify.service';
 
 @Component({
   selector: 'app-road-owner-list',
@@ -85,8 +85,8 @@ export class RoadOwnerListComponent implements OnInit {
       title: 'Подтверждение',
       content: 'Вы уверены, что хотите удалить пользователя?',
       actions: [
-        { text: 'Отмена', dialogResult: 'Cancel' },
-        { text: 'Ок', primary: true, dialogResult: 'OK' }
+        {text: 'Отмена', dialogResult: 'Cancel'},
+        {text: 'Ок', primary: true, dialogResult: 'OK'}
       ]
     });
 
@@ -105,7 +105,7 @@ export class RoadOwnerListComponent implements OnInit {
     this.noInfocards = !this.noInfocards;
 
     this.state.filter = this.gridFilterService.appendFilter(this.state.filter,
-      [{ column: 'TotalCount', value: this.noInfocards ? '0' : '' }]);
+      [{column: 'TotalCount', value: this.noInfocards ? '0' : ''}]);
     this.refresh();
   }
 
@@ -115,6 +115,7 @@ export class RoadOwnerListComponent implements OnInit {
   }
 
   private defaultColor = '#212529';
+
   public getColor(type: string, updated: Date): string {
     if (!updated) {
       return this.defaultColor;

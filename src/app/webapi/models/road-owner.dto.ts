@@ -1,6 +1,6 @@
-import { BaseModelDTO } from './base-model.dto';
-import { UserDTO } from './user';
-import { OrganizationDTO } from './organization.dto';
+import {BaseModelDTO} from './base-model.dto';
+import {UserDTO} from './user';
+import {OrganizationDTO} from './organization.dto';
 
 export class RoadOwnerDTO extends BaseModelDTO {
   public Users: UserDTO[];
@@ -54,7 +54,7 @@ export class RoadOwnerDTO extends BaseModelDTO {
     return new RoadOwnerDTO({
       id: -1,
       Users: [],
-      Organization: new OrganizationDTO({ Name: '(Нет сведений)' })
+      Organization: new OrganizationDTO({Name: '(Нет сведений)'})
     });
   }
 }

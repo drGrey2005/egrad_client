@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InfodocEditComponent } from './infodoc-edit.component';
+import {InfodocEditComponent} from './infodoc-edit.component';
 
 describe('InfodocEditComponent', () => {
   let component: InfodocEditComponent;
@@ -8,9 +8,9 @@ describe('InfodocEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfodocEditComponent ]
+      declarations: [InfodocEditComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

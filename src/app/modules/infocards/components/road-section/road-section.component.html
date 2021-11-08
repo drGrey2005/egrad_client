@@ -1,6 +1,7 @@
 <kendo-grid #grid [data]="view | async" [loading]="editService.loading" [style.height.px]="500" [sortable]="false"
-  [pageable]="false" [selectable]="selectableSettings" [selectedKeys]="selected" [kendoGridSelectBy]="getSelectionKey"
-  [navigable]="true" [egradRowEditing]="createFormGroup" [gridEditService]="editService">
+            [pageable]="false" [selectable]="selectableSettings" [selectedKeys]="selected"
+            [kendoGridSelectBy]="getSelectionKey"
+            [navigable]="true" [egradRowEditing]="createFormGroup" [gridEditService]="editService">
   <ng-template kendoGridToolbarTemplate [position]="'top'" *ngIf="!readonly">
     <button kendoGridAddCommand class="btn btn-success m-1"><span><i class="fas fa-plus"></i> Добавить</span></button>
   </ng-template>
@@ -15,7 +16,7 @@
     </ng-template>
     <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
       <kendo-dropdownlist #categoriesDropDown [data]="roadCategories" [valuePrimitive]="true" [textField]="'text'"
-        [valueField]="'value'" [formControl]="formGroup.get('RoadCategory')">
+                          [valueField]="'value'" [formControl]="formGroup.get('RoadCategory')">
       </kendo-dropdownlist>
     </ng-template>
   </kendo-grid-column>
@@ -26,7 +27,7 @@
     </ng-template>
     <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
       <kendo-dropdownlist [data]="roadClasses" [valuePrimitive]="true" [textField]="'text'" [valueField]="'value'"
-        [formControl]="formGroup.get('RoadClass')">
+                          [formControl]="formGroup.get('RoadClass')">
       </kendo-dropdownlist>
     </ng-template>
   </kendo-grid-column>
@@ -37,7 +38,7 @@
     </ng-template>
     <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
       <kendo-dropdownlist [data]="roadUsingTypes" [valuePrimitive]="true" [textField]="'text'" [valueField]="'value'"
-        [formControl]="formGroup.get('RoadUsingType')">
+                          [formControl]="formGroup.get('RoadUsingType')">
       </kendo-dropdownlist>
     </ng-template>
   </kendo-grid-column>
@@ -47,7 +48,7 @@
       {{ dataItem.Start | roadLength }}
     </ng-template>
     <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
-      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox" />
+      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox"/>
     </ng-template>
   </kendo-grid-column>
 
@@ -56,7 +57,7 @@
       {{ dataItem.Finish | roadLength }}
     </ng-template>
     <ng-template kendoGridEditTemplate let-column="column" let-formGroup="formGroup" let-isNew="isNew">
-      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox" />
+      <input km-and-m [formControl]="formGroup.get(column.field)" type="text" class="k-textbox"/>
     </ng-template>
   </kendo-grid-column>
 

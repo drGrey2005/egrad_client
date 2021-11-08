@@ -1,1 +1,6 @@
-iframe { width: 95%; position: absolute; height: 75%; border: none }
+iframe {
+  width: 95%;
+  position: absolute;
+  height: 75%;
+  border: none
+}

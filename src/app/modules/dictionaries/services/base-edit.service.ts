@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
-import { Observable } from 'rxjs/Observable';
-import { BaseService } from 'src/app/webapi/api/base.service';
-import { BaseModelDTO } from 'src/app/webapi/models/base-model.dto';
-import { tap } from 'rxjs/operators';
+import {Observable} from 'rxjs/Observable';
+import {BaseService} from 'src/app/webapi/api/base.service';
+import {BaseModelDTO} from 'src/app/webapi/models/base-model.dto';
+import {tap} from 'rxjs/operators';
 
 const itemIndex = (item: any, data: any[]): number => {
   for (let idx = 0; idx < data.length; idx++) {

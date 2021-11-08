@@ -1,10 +1,10 @@
-import { Directive, ViewChild, Input, OnInit, OnDestroy } from '@angular/core';
-import { GridComponent } from '@progress/kendo-angular-grid';
-import { BaseEditService } from '../services/base-edit.service';
-import { BaseModelDTO } from 'src/app/webapi/models/base-model.dto';
-import { FormGroup } from '@angular/forms';
-import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
-import { Subscription } from 'rxjs';
+import {Directive, ViewChild, Input, OnInit, OnDestroy} from '@angular/core';
+import {GridComponent} from '@progress/kendo-angular-grid';
+import {BaseEditService} from '../services/base-edit.service';
+import {BaseModelDTO} from 'src/app/webapi/models/base-model.dto';
+import {FormGroup} from '@angular/forms';
+import {DialogService, DialogCloseResult} from '@progress/kendo-angular-dialog';
+import {Subscription} from 'rxjs';
 
 @Directive({
   selector: '[egradRowEditing]'
@@ -40,12 +40,12 @@ export class EgradRowEditingDirective implements OnInit, OnDestroy {
   public addHandler(): void {
     this.closeEditor();
 
-    this.formGroup = this.createModel({ isNew: true });
+    this.formGroup = this.createModel({isNew: true});
 
     this.grid.addRow(this.formGroup);
   }
 
-  public removeHandler({ dataItem }) {
+  public removeHandler({dataItem}) {
     const removeItem = (shouldRemove) => {
       if (shouldRemove) {
         this.gridEditService.remove(dataItem);
@@ -56,8 +56,8 @@ export class EgradRowEditingDirective implements OnInit, OnDestroy {
       title: 'Подтверждение',
       content: 'Вы уверены, что хотите удалить запись?',
       actions: [
-        { text: 'Отмена', dialogResult: 'Cancel' },
-        { text: 'Ок', primary: true, dialogResult: 'OK' }
+        {text: 'Отмена', dialogResult: 'Cancel'},
+        {text: 'Ок', primary: true, dialogResult: 'OK'}
       ]
     });
 
@@ -68,21 +68,21 @@ export class EgradRowEditingDirective implements OnInit, OnDestroy {
     });
   }
 
-  public saveChangesHandler({ rowIndex, formGroup, isNew }): void {
+  public saveChangesHandler({rowIndex, formGroup, isNew}): void {
     this.gridEditService.save(formGroup.value)
       .subscribe(() => {
         this.grid.closeRow(rowIndex);
       });
   }
 
-  public discardChangesHandler({ rowIndex }): void {
+  public discardChangesHandler({rowIndex}): void {
     this.closeEditor();
   }
 
-  public editHandler({ rowIndex, dataItem }): void {
+  public editHandler({rowIndex, dataItem}): void {
     this.closeEditor();
 
-    this.formGroup = this.createModel({ dataItem: dataItem });
+    this.formGroup = this.createModel({dataItem: dataItem});
     this.editedRowIndex = rowIndex;
 
     this.grid.editRow(rowIndex, this.formGroup);

@@ -1,7 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
-import { ReportAPIService } from '../../../../webapi/api/report.api';
-import { Observable } from 'rxjs';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-doc-preview',
@@ -28,9 +26,9 @@ export class DocPreviewComponent implements OnInit {
     this.loading = true;
     this.content
       .subscribe(htmlText => {
-        this.loadFrameContent(htmlText);
-        this.loading = false;
-      },
+          this.loadFrameContent(htmlText);
+          this.loading = false;
+        },
         error => {
           this.loading = false;
           throw error;
@@ -39,7 +37,7 @@ export class DocPreviewComponent implements OnInit {
 
   private loadFrameContent(htmlText: string): void {
     if (!this.reportHtmlFrame.nativeElement.contentWindow) {
-      return
+      return;
     }
 
     const frameDocument = this.reportHtmlFrame.nativeElement.contentWindow.document;

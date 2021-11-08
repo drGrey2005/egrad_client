@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-archive-reason',
@@ -9,7 +9,9 @@ export class ArchiveReasonComponent implements OnInit {
   reason: string;
   paperPlacement: string;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 }

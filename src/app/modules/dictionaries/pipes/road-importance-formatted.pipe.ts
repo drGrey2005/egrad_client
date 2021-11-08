@@ -11,11 +11,6 @@ export class RoadImportanceFormattedPipe implements PipeTransform {
       return value;
     }
 
-    // const ri = RoadCommons.RoadImportance[value];
-    // return ri ?
-    //   ri.text
-    //   : 'Ошибочное значение';
-
     //Получаем текстовое описание по номеру
     return RoadCommons.RoadImportanceItems.find(val => val.code === value).text;
   }

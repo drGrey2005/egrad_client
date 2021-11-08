@@ -1,26 +1,26 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { DialogService } from '@progress/kendo-angular-dialog';
-import { State } from '@progress/kendo-data-query';
-import { DataStateChangeEvent, GridDataResult, RowArgs } from '@progress/kendo-angular-grid';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, OnInit, HostListener} from '@angular/core';
+import {DialogService} from '@progress/kendo-angular-dialog';
+import {State} from '@progress/kendo-data-query';
+import {DataStateChangeEvent, GridDataResult, RowArgs} from '@progress/kendo-angular-grid';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {FormGroup, FormControl} from '@angular/forms';
 
-import { InfodocAPIService } from 'src/app/webapi/api/infodoc.service';
-import { ReportAPIService } from 'src/app/webapi/api/report.api';
-import { SecurityService } from 'src/app/services/security.service';
-import { GridDataset } from 'src/app/modules/commons/services/grid-dataset';
-import { InfodocDTO } from 'src/app/webapi/models/infodoc.dto';
-import { DocPreviewComponent } from 'src/app/modules/dictionaries/components/doc-preview/doc-preview.component';
-import { InfodocSignerAPIService } from 'src/app/webapi/api/infodoc-signer.service';
-import { SignerDTO } from 'src/app/webapi/models/signer.dto';
-import { GridFilterService } from 'src/app/modules/commons/services/grid-filter.service';
-import { ActionLogAPIService } from 'src/app/webapi/api/action-log.service';
-import { ActionLogDTO } from 'src/app/webapi/models/action-log.dto';
-import { ActionLogOperations, ActionLogTypes } from 'src/app/modules/dictionaries/models/action-log-commons';
-import { ActionType } from 'src/app/models/authorization.types';
-import { InfodocCryptoService } from '../../services/infodoc-crypto.service';
-import { Router } from '@angular/router';
+import {InfodocAPIService} from 'src/app/webapi/api/infodoc.service';
+import {ReportAPIService} from 'src/app/webapi/api/report.api';
+import {SecurityService} from 'src/app/services/security.service';
+import {GridDataset} from 'src/app/modules/commons/services/grid-dataset';
+import {InfodocDTO} from 'src/app/webapi/models/infodoc.dto';
+import {DocPreviewComponent} from 'src/app/modules/dictionaries/components/doc-preview/doc-preview.component';
+import {InfodocSignerAPIService} from 'src/app/webapi/api/infodoc-signer.service';
+import {SignerDTO} from 'src/app/webapi/models/signer.dto';
+import {GridFilterService} from 'src/app/modules/commons/services/grid-filter.service';
+import {ActionLogAPIService} from 'src/app/webapi/api/action-log.service';
+import {ActionLogDTO} from 'src/app/webapi/models/action-log.dto';
+import {ActionLogOperations, ActionLogTypes} from 'src/app/modules/dictionaries/models/action-log-commons';
+import {ActionType} from 'src/app/models/authorization.types';
+import {InfodocCryptoService} from '../../services/infodoc-crypto.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-infodoc-list',
@@ -30,9 +30,11 @@ import { Router } from '@angular/router';
 export class InfodocListComponent implements OnInit {
   public dataset: GridDataset;
   public selected: InfodocDTO[] = [];
+
   public get selectedOne() {
     return this.selected && this.selected.length === 1;
   }
+
   public state: State = {
     skip: 0,
     take: 30
@@ -98,8 +100,8 @@ export class InfodocListComponent implements OnInit {
       title: entity.Number,
       content: DocPreviewComponent,
       actions: [
-        { text: 'Отмена' },
-        { text: 'Ок', primary: true }
+        {text: 'Отмена'},
+        {text: 'Ок', primary: true}
       ],
       width: 800
     });
@@ -114,7 +116,7 @@ export class InfodocListComponent implements OnInit {
       return;
     }
 
-    this.state.filter = this.gridFilterService.appendFilter(this.state.filter, [{ column: 'search', value: this.searchForm.value.filter }]);
+    this.state.filter = this.gridFilterService.appendFilter(this.state.filter, [{column: 'search', value: this.searchForm.value.filter}]);
     this.refresh();
   }
 
@@ -142,7 +144,7 @@ export class InfodocListComponent implements OnInit {
           });
         })
       );
-  }
+  };
 
   public dblClickEvent(event): void {
     if (this.selectedOne) {

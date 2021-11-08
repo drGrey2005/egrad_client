@@ -1,4 +1,4 @@
-import { DictionariesModule } from './dictionaries.module';
+import {DictionariesModule} from './dictionaries.module';
 
 describe('DictionariesModule', () => {
   let dictionariesModule: DictionariesModule;

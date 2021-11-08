@@ -82,8 +82,7 @@ export abstract class BaseService<T extends BaseModelDTO> {
       .get(`${this.endpointUrl}`, {headers: this.getHeaders(), params: params})
       .pipe(
         map((response: any) => {
-          if(response.results)
-          {
+          if (response.results) {
             return response.results.map(this.getInstance.bind(this));
           }
           return response.map(this.getInstance.bind(this));

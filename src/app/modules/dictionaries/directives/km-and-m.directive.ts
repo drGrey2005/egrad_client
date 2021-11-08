@@ -1,11 +1,11 @@
-import { Directive, Renderer2, ElementRef, HostListener, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { KmAndMConverter } from '../services/km-and-m.converter';
+import {Directive, Renderer2, ElementRef, HostListener, Input} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {KmAndMConverter} from '../services/km-and-m.converter';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
   selector: 'input[km-and-m]',
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: KmAndMDirective, multi: true }]
+  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: KmAndMDirective, multi: true}]
 })
 export class KmAndMDirective implements ControlValueAccessor {
 
@@ -82,7 +82,9 @@ export class KmAndMDirective implements ControlValueAccessor {
     this.input.disabled = isDisabled;
   }
 
-  private _changeCallback = (data: any) => { };
+  private _changeCallback = (data: any) => {
+  };
 
-  private _onTouchedCallback = () => { };
+  private _onTouchedCallback = () => {
+  };
 }

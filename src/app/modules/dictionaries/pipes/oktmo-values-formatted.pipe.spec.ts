@@ -1,4 +1,4 @@
-import { OktmoValuesFormattedPipe } from './oktmo-values-formatted.pipe';
+import {OktmoValuesFormattedPipe} from './oktmo-values-formatted.pipe';
 
 describe('OktmoValuesFormattedPipe', () => {
   it('create an instance', () => {

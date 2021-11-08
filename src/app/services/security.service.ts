@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { AuthenticationService } from './authentication.service';
-import { UserAPIService } from '../webapi/api/user.service';
-import { UserDTO } from '../webapi/models/user';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ActionType } from '../models/authorization.types';
+import {Injectable} from '@angular/core';
+import {AuthenticationService} from './authentication.service';
+import {UserAPIService} from '../webapi/api/user.service';
+import {UserDTO} from '../webapi/models/user';
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {ActionType} from '../models/authorization.types';
 
 @Injectable()
 export class SecurityService {

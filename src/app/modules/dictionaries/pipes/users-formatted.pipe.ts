@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { UserDTO } from 'src/app/webapi/models/user';
+import {Pipe, PipeTransform} from '@angular/core';
+import {UserDTO} from 'src/app/webapi/models/user';
 
 @Pipe({
   name: 'usersFormatted'
@@ -12,7 +12,9 @@ export class UsersFormattedPipe implements PipeTransform {
       return value;
     }
 
-    return values.map(function (item) { return item.username; }).join(', ');
+    return values.map(function (item) {
+      return item.username;
+    }).join(', ');
   }
 
 }

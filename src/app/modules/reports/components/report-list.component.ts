@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ReportTemplateAPIService } from '../../../webapi/api/report-template.service';
-import { ReportTemplateDTO } from '../../../webapi/models/report-template.dto';
-import { DialogService } from '@progress/kendo-angular-dialog';
-import { GenerateReportComponent } from './generate-report.component';
-import { Router } from '@angular/router';
-import { OrganizationDTO } from 'src/app/webapi/models/organization.dto';
-import { CryptoService } from '../../commons/services/crypto.service';
+import {Component, OnInit} from '@angular/core';
+import {ReportTemplateAPIService} from '../../../webapi/api/report-template.service';
+import {ReportTemplateDTO} from '../../../webapi/models/report-template.dto';
+import {DialogService} from '@progress/kendo-angular-dialog';
+import {GenerateReportComponent} from './generate-report.component';
+import {Router} from '@angular/router';
+import {OrganizationDTO} from 'src/app/webapi/models/organization.dto';
 
 @Component({
   selector: 'app-report-list',
@@ -19,7 +18,8 @@ export class ReportListComponent implements OnInit {
     private apiService: ReportTemplateAPIService,
     private dialogService: DialogService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.apiService.list().subscribe(data => {
@@ -32,8 +32,8 @@ export class ReportListComponent implements OnInit {
       title: 'Параметры генерации',
       content: GenerateReportComponent,
       actions: [
-        { text: 'Отмена', dialogResult: 'Cancel' },
-        { text: 'Сгенерировать', primary: true, dialogResult: 'OK' }
+        {text: 'Отмена', dialogResult: 'Cancel'},
+        {text: 'Сгенерировать', primary: true, dialogResult: 'OK'}
       ],
       width: 650,
       height: 450,
@@ -45,7 +45,7 @@ export class ReportListComponent implements OnInit {
         const params = (dialog.content.instance as GenerateReportComponent).params;
         this.prepareParams(params, item.id, item.report_name, 'html');
 
-        this.router.navigate(['/reports', 'preview'], { queryParams: params });
+        this.router.navigate(['/reports', 'preview'], {queryParams: params});
       }
     });
   }
@@ -108,7 +108,11 @@ export class ReportListComponent implements OnInit {
 }
 
 function sortByName(o1: ReportTemplateDTO, o2: ReportTemplateDTO): number {
-  if (o1.name < o2.name) { return -1; }
-  if (o1.name > o2.name) { return 1; }
+  if (o1.name < o2.name) {
+    return -1;
+  }
+  if (o1.name > o2.name) {
+    return 1;
+  }
   return 0;
 }

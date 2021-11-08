@@ -1,38 +1,38 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class KmAndMConverter {
-    public transform(value: string): string {
-        if (!value) {
-            return value;
-        }
-
-        const parts = value.split('.');
-        return `${parts[0]}+${parts[1]}`;
+  public transform(value: string): string {
+    if (!value) {
+      return value;
     }
 
-    public parse(value: string): string {
-        if (!value) {
-            return value;
-        }
+    const parts = value.split('.');
+    return `${parts[0]}+${parts[1]}`;
+  }
 
-        const parts = value.split('+');
-        if (parts.length === 1) {
-            return `${parts[0]}.000`;
-        }
+  public parse(value: string): string {
+    if (!value) {
+      return value;
+    }
 
-        if (parts.length === 2) {
-            const km = +parts[0].trim();
+    const parts = value.split('+');
+    if (parts.length === 1) {
+      return `${parts[0]}.000`;
+    }
 
-            if (isNaN(km)) {
-                return null;
-            }
+    if (parts.length === 2) {
+      const km = +parts[0].trim();
 
-            const m = +parts[1].trim();
-
-            return `${km}.${m.toString().padStart(3, '0')}`;
-        }
-
+      if (isNaN(km)) {
         return null;
+      }
+
+      const m = +parts[1].trim();
+
+      return `${km}.${m.toString().padStart(3, '0')}`;
     }
+
+    return null;
+  }
 }

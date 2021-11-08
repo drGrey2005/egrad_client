@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { ActionLogCommons } from "../models/action-log-commons";
+import {Pipe, PipeTransform} from '@angular/core';
+import {ActionLogCommons} from '../models/action-log-commons';
 
 @Pipe({
   name: 'actionLogOperationsFormatted'

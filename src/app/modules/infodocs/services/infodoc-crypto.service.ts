@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
+import {Injectable} from '@angular/core';
+import {DialogCloseResult, DialogService} from '@progress/kendo-angular-dialog';
 import getCadespluginAPI from 'async-cadesplugin';
-import { tap } from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
-import { InfodocDTO } from 'src/app/webapi/models/infodoc.dto';
-import { SigninComponent } from '../../commons/components/signin/signin.component';
-import { CryptoService } from '../../commons/services/crypto.service';
-import { InfodocAPIService } from 'src/app/webapi/api/infodoc.service';
-import { NotifyService } from '../../commons/services/notify.service';
-import { Observable, of, Subscriber, BehaviorSubject } from 'rxjs';
+import {InfodocDTO} from 'src/app/webapi/models/infodoc.dto';
+import {SigninComponent} from '../../commons/components/signin/signin.component';
+import {CryptoService} from '../../commons/services/crypto.service';
+import {InfodocAPIService} from 'src/app/webapi/api/infodoc.service';
+import {NotifyService} from '../../commons/services/notify.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ export class InfodocCryptoService {
     private apiService: InfodocAPIService,
     private notifyService: NotifyService,
     private dialogService: DialogService,
-    private cryptoService: CryptoService) { }
+    private cryptoService: CryptoService) {
+  }
 
   public Sign(infodoc: InfodocDTO): Observable<InfodocDTO> {
     const result: BehaviorSubject<InfodocDTO> = new BehaviorSubject(null);

@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { OktmoDTO } from 'src/app/webapi/models/oktmo.dto';
+import {Pipe, PipeTransform} from '@angular/core';
+import {OktmoDTO} from 'src/app/webapi/models/oktmo.dto';
 
 @Pipe({
   name: 'oktmoValuesFormatted'
@@ -12,6 +12,8 @@ export class OktmoValuesFormattedPipe implements PipeTransform {
       return value;
     }
 
-    return oktmoValues.map(function (item) { return item.Name2; }).join(', ');
+    return oktmoValues.map(function (item) {
+      return item.Name2;
+    }).join(', ');
   }
 }

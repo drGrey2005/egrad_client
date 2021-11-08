@@ -6,14 +6,15 @@
           <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
         </div>
         <input type="text" class="form-control" id="filter" formControlName="filter" placeholder="Поиск..."
-          aria-describedby="inputGroupPrepend">
+               aria-describedby="inputGroupPrepend">
       </div>
     </form>
     <kendo-grid [style.height.px]="gridHeight" [data]="dataset | async" [loading]="dataset.loading"
-      [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort" [filter]="state.filter" [filterable]="true"
-      [sortable]="true" [pageable]="true" [selectable]="true" [selectedKeys]="selected"
-      [kendoGridSelectBy]="getSelectionKey" [navigable]="true" (dataStateChange)="dataStateChange($event)"
-      (dblclick)="dblClickEvent($event)">
+                [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort" [filter]="state.filter"
+                [filterable]="true"
+                [sortable]="true" [pageable]="true" [selectable]="true" [selectedKeys]="selected"
+                [kendoGridSelectBy]="getSelectionKey" [navigable]="true" (dataStateChange)="dataStateChange($event)"
+                (dblclick)="dblClickEvent($event)">
       <ng-template kendoGridToolbarTemplate [position]="'top'">
 
         <button class="btn btn-primary m-1" role="button" [routerLink]="['create']">
@@ -25,8 +26,8 @@
         </button>
 
         <kendo-dropdownbutton *ngIf="selectedOne"
-          [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
-          (itemClick)="downloadClick($event, selected[0])">
+                              [data]="[{text:'Просмотр',format:'html'},{text:'Скачать DOC',format:'docx'},{text:'Скачать PDF',format:'pdf'}]"
+                              (itemClick)="downloadClick($event, selected[0])">
           <span><i class="fas fa-download"></i> Скачать <i class="fas fa-chevron-down"></i></span>
           <ng-template kendoDropDownButtonItemTemplate let-item>
             <span>{{ item.text }}</span>
@@ -34,7 +35,7 @@
         </kendo-dropdownbutton>
         <button type="button" kendoGridExcelCommand icon="file-excel">Скачать список</button>
         <button type="button" (click)="cryptoSign()" class="btn btn-secondary m-1" [hidden]="!canSign()"><span><i
-              class="fas fa-file-signature"></i>Подписать ЭЦП</span></button>
+          class="fas fa-file-signature"></i>Подписать ЭЦП</span></button>
       </ng-template>
       <kendo-grid-column field="RequestDate" title="Дата поступления запроса" [width]="100">
         <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
@@ -42,11 +43,11 @@
           </kendo-grid-date-filter-cell>
         </ng-template>
         <ng-template kendoGridCellTemplate let-item>
-          {{item.RequestDate?(item.RequestDate| date:"shortDate"):''}}
+          {{item.RequestDate ? (item.RequestDate| date:"shortDate") : ''}}
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="RequestOrganization"
-        title="Реквизиты организации (данные гражданина), направившей запрос" [width]="140">
+                         title="Реквизиты организации (данные гражданина), направившей запрос" [width]="140">
         <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
           <kendo-grid-string-filter-cell [showOperators]="false" [column]="column" [filter]="filter">
           </kendo-grid-string-filter-cell>
@@ -78,7 +79,7 @@
           </kendo-grid-date-filter-cell>
         </ng-template>
         <ng-template kendoGridCellTemplate let-item>
-          {{item.CreationDate?(item.CreationDate | date:"shortDate") :''}}
+          {{item.CreationDate ? (item.CreationDate | date:"shortDate") : ''}}
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="SignDate" title="Дата подписания" [width]="100">
@@ -87,17 +88,17 @@
           </kendo-grid-date-filter-cell>
         </ng-template>
         <ng-template kendoGridCellTemplate let-item>
-          {{item.SignDate?(item.SignDate| date:"shortDate"):''}}
+          {{item.SignDate ? (item.SignDate| date:"shortDate") : ''}}
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="signer" title="Лицо, подписавшее выписку" [width]="150">
         <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
           <abs-dropdown-filter [field]="'signer'" [filter]="filter" [data]="infodocSigners" textField="name"
-            valueField="id">
+                               valueField="id">
           </abs-dropdown-filter>
         </ng-template>
         <ng-template kendoGridCellTemplate let-item>
-          {{ item.signer ? item.signer.name: '' }}
+          {{ item.signer ? item.signer.name : '' }}
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Done" title="Заполнение завершено" [width]="140" filter="boolean">
@@ -110,12 +111,12 @@
 
         <kendo-excelexport-column field="RequestDate" title="Дата поступления запроса">
           <ng-template kendoGridCellTemplate let-item>
-            {{item.RequestDate?(item.RequestDate| date:"shortDate"):''}}
+            {{item.RequestDate ? (item.RequestDate| date:"shortDate") : ''}}
           </ng-template>
         </kendo-excelexport-column>
 
         <kendo-excelexport-column field="RequestOrganization"
-          title="Реквизиты организации (данные гражданина), направившей запрос">
+                                  title="Реквизиты организации (данные гражданина), направившей запрос">
         </kendo-excelexport-column>
 
         <kendo-excelexport-column field="Infocards__RoadName" title="Наименование автомобильной дороги по запросу">
@@ -135,13 +136,13 @@
 
         <kendo-excelexport-column field="CreationDate" title="Дата предоставленной выписки">
           <ng-template kendoGridCellTemplate let-item>
-            {{item.CreationDate?(item.CreationDate | date:"shortDate") :''}}
+            {{item.CreationDate ? (item.CreationDate | date:"shortDate") : ''}}
           </ng-template>
         </kendo-excelexport-column>
 
         <kendo-excelexport-column field="signer" title="Лицо, подписавшее выписку">
           <ng-template kendoGridCellTemplate let-item>
-            {{ item.signer ? item.signer.name: '' }}
+            {{ item.signer ? item.signer.name : '' }}
           </ng-template>
         </kendo-excelexport-column>
 

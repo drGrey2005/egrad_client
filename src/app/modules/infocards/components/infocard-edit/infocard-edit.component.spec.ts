@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InfocardEditComponent } from './infocard-edit.component';
+import {InfocardEditComponent} from './infocard-edit.component';
 
 describe('InfocardEditComponent', () => {
   let component: InfocardEditComponent;

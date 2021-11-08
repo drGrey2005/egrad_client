@@ -1,4 +1,4 @@
-import { RoadOwnersModule } from './road-owners.module';
+import {RoadOwnersModule} from './road-owners.module';
 
 describe('RoadOwnersModule', () => {
   let roadOwnersModule: RoadOwnersModule;

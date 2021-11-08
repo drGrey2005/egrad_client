@@ -1,12 +1,12 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { GridComponent, GridDataResult, RowArgs } from "@progress/kendo-angular-grid";
-import { Observable } from "rxjs";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SelectableSettings } from "@progress/kendo-angular-treeview";
-import { DialogService } from "@progress/kendo-angular-dialog";
-import { map } from "rxjs/operators";
-import { RoadPlaceDTO } from "src/app/webapi/models/road-place.dto";
-import { RoadPlaceEditService } from "src/app/modules/infocards/services/road-place.edit.service";
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {GridComponent, GridDataResult, RowArgs} from '@progress/kendo-angular-grid';
+import {Observable} from 'rxjs';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SelectableSettings} from '@progress/kendo-angular-treeview';
+import {DialogService} from '@progress/kendo-angular-dialog';
+import {map} from 'rxjs/operators';
+import {RoadPlaceDTO} from 'src/app/webapi/models/road-place.dto';
+import {RoadPlaceEditService} from 'src/app/modules/infocards/services/road-place.edit.service';
 
 @Component({
   selector: 'app-road-place',
@@ -53,13 +53,14 @@ export class RoadPlaceComponent implements OnInit {
     this.editService.id = this.infocardId;
     this.editService.read();
   }
+
   public getSelectionKey(context: RowArgs): any {
     return context.dataItem;
   }
 
   public createFormGroup(args: any): FormGroup {
     const item = args.isNew
-      ? new RoadPlaceDTO({ Infocard: this.infocardId, Length: 0 })
+      ? new RoadPlaceDTO({Infocard: this.infocardId, Length: 0})
       : args.dataItem;
 
     this.formGroup = this.formBuilder.group({

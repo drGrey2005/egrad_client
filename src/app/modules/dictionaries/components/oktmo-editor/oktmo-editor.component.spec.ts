@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OktmoEditorComponent } from './oktmo-editor.component';
+import {OktmoEditorComponent} from './oktmo-editor.component';
 
 describe('OktmoEditorComponent', () => {
   let component: OktmoEditorComponent;
@@ -8,9 +8,9 @@ describe('OktmoEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OktmoEditorComponent ]
+      declarations: [OktmoEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

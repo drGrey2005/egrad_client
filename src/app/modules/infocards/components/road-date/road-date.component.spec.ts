@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoadDateComponent } from './road-date.component';
+import {RoadDateComponent} from './road-date.component';
 
 describe('RoadDateComponent', () => {
   let component: RoadDateComponent;
@@ -8,9 +8,9 @@ describe('RoadDateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoadDateComponent ]
+      declarations: [RoadDateComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

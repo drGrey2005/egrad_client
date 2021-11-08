@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {RegionDTO} from "../../../webapi/models/region.dto";
+import {Pipe, PipeTransform} from '@angular/core';
+import {RegionDTO} from '../../../webapi/models/region.dto';
 
 @Pipe({
   name: 'regionFormatted'
@@ -9,7 +9,9 @@ import {RegionDTO} from "../../../webapi/models/region.dto";
 export class RegionFormattedPipe implements PipeTransform {
 
   transform(values: number[], regions: RegionDTO[]): any {
-    if (!values) return null;
+    if (!values) {
+      return null;
+    }
 
     const result: string[] = [];
     values.forEach(val => result.push(regions[val].Name));

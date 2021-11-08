@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoadOwnerListComponent } from './road-owner-list.component';
+import {RoadOwnerListComponent} from './road-owner-list.component';
 
 describe('RoadOwnerListComponent', () => {
   let component: RoadOwnerListComponent;

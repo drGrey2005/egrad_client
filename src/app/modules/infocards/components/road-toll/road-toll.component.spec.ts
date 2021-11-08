@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoadTollComponent } from './road-toll.component';
+import {RoadTollComponent} from './road-toll.component';
 
 describe('RoadTollComponent', () => {
   let component: RoadTollComponent;
@@ -8,9 +8,9 @@ describe('RoadTollComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoadTollComponent ]
+      declarations: [RoadTollComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { GridComponent, GridDataResult, RowArgs } from '@progress/kendo-angular-grid';
-import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SelectableSettings } from '@progress/kendo-angular-treeview';
-import { RoadTollEditService } from '../../services/road-toll-edit.service';
-import { map } from 'rxjs/operators';
-import { RoadTollDTO } from 'src/app/webapi/models/road-toll.dto';
-import { DialogService } from '@progress/kendo-angular-dialog';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {GridComponent, GridDataResult, RowArgs} from '@progress/kendo-angular-grid';
+import {Observable} from 'rxjs';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SelectableSettings} from '@progress/kendo-angular-treeview';
+import {RoadTollEditService} from '../../services/road-toll-edit.service';
+import {map} from 'rxjs/operators';
+import {RoadTollDTO} from 'src/app/webapi/models/road-toll.dto';
+import {DialogService} from '@progress/kendo-angular-dialog';
 
 const arrayToObject = array =>
   array.reduce((obj, item) => {
@@ -59,13 +59,14 @@ export class RoadTollComponent implements OnInit {
     this.editService.id = this.infocardId;
     this.editService.read();
   }
+
   public getSelectionKey(context: RowArgs): any {
     return context.dataItem;
   }
 
   public createFormGroup(args: any): FormGroup {
     const item = args.isNew
-      ? new RoadTollDTO({ Infocard: this.infocardId, Length: 0 })
+      ? new RoadTollDTO({Infocard: this.infocardId, Length: 0})
       : args.dataItem;
 
     this.formGroup = this.formBuilder.group({

@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { GridComponent, GridDataResult, RowArgs } from '@progress/kendo-angular-grid';
-import { InfocardAPIService } from 'src/app/webapi/api/infocard.service';
-import { DocumentEditService } from '../../services/document-edit.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DocumentDTO } from 'src/app/webapi/models/document';
-import { Observable } from 'rxjs';
-import { SelectableSettings } from '@progress/kendo-angular-treeview';
-import { map } from 'rxjs/operators';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {GridComponent, GridDataResult, RowArgs} from '@progress/kendo-angular-grid';
+import {InfocardAPIService} from 'src/app/webapi/api/infocard.service';
+import {DocumentEditService} from '../../services/document-edit.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DocumentDTO} from 'src/app/webapi/models/document';
+import {Observable} from 'rxjs';
+import {SelectableSettings} from '@progress/kendo-angular-treeview';
+import {map} from 'rxjs/operators';
 
 const arrayToObject = (array) =>
   array.reduce((obj, item) => {
@@ -66,7 +66,7 @@ export class DocumentComponent implements OnInit {
 
   public createFormGroup(args: any): FormGroup {
     const item = args.isNew
-      ? new DocumentDTO({ Infocard: this.infocardId, Length: 0 })
+      ? new DocumentDTO({Infocard: this.infocardId, Length: 0})
       : args.dataItem;
 
     this.formGroup = this.formBuilder.group({

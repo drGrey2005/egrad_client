@@ -4,7 +4,7 @@
       <label for="enter_date_from" class="col-md-4 col-form-label">Дата начала</label>
       <div class="col-md-8">
         <kendo-datepicker class="form-control" [format]="'dd-MM-yyyy'" [(ngModel)]="params.enter_date_from"
-          name='enter_date_from'>
+                          name='enter_date_from'>
         </kendo-datepicker>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <label for="enter_date_to" class="col-md-4 col-form-label">Дата окончания</label>
       <div class="col-md-8">
         <kendo-datepicker class="form-control" [format]="'dd-MM-yyyy'" [(ngModel)]="params.enter_date_to"
-          name='enter_date_to'>
+                          name='enter_date_to'>
         </kendo-datepicker>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <label for="importance" class="col-md-4 col-form-label">Значение</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="roadImportance" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.importance" name="importance">
+                            [valueField]="'value'" [(ngModel)]="params.importance" name="importance">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <label for="using_type" class="col-md-4 col-form-label">Вид разрешенного использования</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="roadUsageTypes" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.using_type" name="using_type">
+                            [valueField]="'value'" [(ngModel)]="params.using_type" name="using_type">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <label for="operation" class="col-md-4 col-form-label">Операция</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="logOperations" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.operation" name="operation">
+                            [valueField]="'value'" [(ngModel)]="params.operation" name="operation">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <label for="type" class="col-md-4 col-form-label">Тип объекта</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="logTypes" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.type" name="type">
+                            [valueField]="'value'" [(ngModel)]="params.type" name="type">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -64,7 +64,7 @@
       <label for="right_doc_type" class="col-md-4 col-form-label">Наименование вещного права</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="rightDocTypes" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.right_doc_type" name="right_doc_type">
+                            [valueField]="'value'" [(ngModel)]="params.right_doc_type" name="right_doc_type">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -74,7 +74,7 @@
       <label for="category" class="col-md-4 col-form-label">Техническая категория</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="roadCategories" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.category" name="category">
+                            [valueField]="'value'" [(ngModel)]="params.category" name="category">
         </kendo-dropdownlist>
         <!-- <kendo-multiselect class="form-control" [data]="roadCategories" [valuePrimitive]="true" [textField]="'text'"
       [valueField]="'value'" [(ngModel)]="params.category" name="category">
@@ -87,7 +87,7 @@
       <label for="class" class="col-md-4 col-form-label">Класс</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="roadClasses" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.class" name="class">
+                            [valueField]="'value'" [(ngModel)]="params.class" name="class">
         </kendo-dropdownlist>
         <!-- <kendo-multiselect class="form-control" [data]="roadClasses" [valuePrimitive]="true" [textField]="'text'"
       [valueField]="'value'" [(ngModel)]="params.class" name="class">
@@ -100,7 +100,7 @@
       <label for="class" class="col-md-4 col-form-label">Категория заявителя</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="requestorTypes" [valuePrimitive]="true" [textField]="'text'"
-          [valueField]="'value'" [(ngModel)]="params.requestor_type" name="requestor_type">
+                            [valueField]="'value'" [(ngModel)]="params.requestor_type" name="requestor_type">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -110,8 +110,8 @@
       <label for="class" class="col-md-4 col-form-label">Собственник</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="filteredOwners" [valuePrimitive]="true" [textField]="'Name'"
-          [valueField]="'id'" [(ngModel)]="params.owners" name="owners" [filterable]="true"
-          (filterChange)="onFilterOwners($event)">
+                            [valueField]="'id'" [(ngModel)]="params.owners" name="owners" [filterable]="true"
+                            (filterChange)="onFilterOwners($event)">
         </kendo-dropdownlist>
         <!-- <kendo-multiselect class="form-control" [data]="owners" [valuePrimitive]="true" [textField]="'Name'"
       [valueField]="'id'" [(ngModel)]="params.owners" name="owners">
@@ -124,8 +124,8 @@
       <label for="class" class="col-md-4 col-form-label">Организация пользователя</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="filteredOrganizations" [valuePrimitive]="true"
-          [(ngModel)]="params.org_fullname" name="org_fullname" [filterable]="true"
-          (filterChange)="onFilterOrganizations($event)">
+                            [(ngModel)]="params.org_fullname" name="org_fullname" [filterable]="true"
+                            (filterChange)="onFilterOrganizations($event)">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -135,7 +135,7 @@
       <label for="class" class="col-md-4 col-form-label">Лицо, подписывающее выписку</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="infodocSigners" [valuePrimitive]="true" [textField]="'name'"
-          [valueField]="'id'" [(ngModel)]="params.signer" name="signer">
+                            [valueField]="'id'" [(ngModel)]="params.signer" name="signer">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -145,8 +145,8 @@
       <label for="class" class="col-md-4 col-form-label">Субъекты РФ</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="filteredSubjects" [valuePrimitive]="true" [textField]="'Name2'"
-          [valueField]="'id'" [(ngModel)]="params.subjects" name="subjects" [filterable]="true"
-          (filterChange)="onFilterSubjects($event)">
+                            [valueField]="'id'" [(ngModel)]="params.subjects" name="subjects" [filterable]="true"
+                            (filterChange)="onFilterSubjects($event)">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -156,8 +156,8 @@
       <label for="users" class="col-md-4 col-form-label">Пользователь</label>
       <div class="col-md-8">
         <kendo-dropdownlist class="form-control" [data]="filteredUsers" [valuePrimitive]="true" [textField]="'fio'"
-          [valueField]="'id'" [(ngModel)]="params.users" name="users" [filterable]="true"
-          (filterChange)="onFilterUsers($event)">
+                            [valueField]="'id'" [(ngModel)]="params.users" name="users" [filterable]="true"
+                            (filterChange)="onFilterUsers($event)">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -167,7 +167,7 @@
       <label for="request_organization" class="col-md-4 col-form-label">Реквизиты организации</label>
       <div class="col-md-8">
         <input type="text" class="k-textbox egrad-form-control" [(ngModel)]="params.request_organization"
-          name="request_organization">
+               name="request_organization">
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@
   </div>
   <div class="form-check" *ngIf="hasParam('payment_flag')">
     <input type="checkbox" class="form-check-input" [ngModel]="params.payment_flag"
-      (change)="onPaymentFlagChange($event)" name="payment_flag" [indeterminate]="params.payment_flag===undefined">
+           (change)="onPaymentFlagChange($event)" name="payment_flag" [indeterminate]="params.payment_flag===undefined">
     <label for="payment_flag" class="form-check-label">Является ли выписка платной</label>
   </div>
 </form>

@@ -1,24 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfocardAPIService } from '../../../../webapi/api/infocard.service';
-import { InfocardDTO } from 'src/app/webapi/models/infocard.dto';
-import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
-import { DocPreviewComponent } from 'src/app/modules/dictionaries/components/doc-preview/doc-preview.component';
-import { ReportAPIService } from 'src/app/webapi/api/report.api';
-import { SecurityService } from 'src/app/services/security.service';
-import { ActionType } from 'src/app/models/authorization.types';
-import { InfocardGridComponent } from 'src/app/modules/dictionaries/components/infocard-grid/infocard-grid.component';
-import {
-  InfocardFilterModes,
-  InfocardFilterRoadModes,
-  InfocardCommons
-} from 'src/app/modules/dictionaries/models/infocard-commons';
-import { SigninComponent } from 'src/app/modules/commons/components/signin/signin.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {InfocardAPIService} from '../../../../webapi/api/infocard.service';
+import {InfocardDTO} from 'src/app/webapi/models/infocard.dto';
+import {DialogCloseResult, DialogService} from '@progress/kendo-angular-dialog';
+import {DocPreviewComponent} from 'src/app/modules/dictionaries/components/doc-preview/doc-preview.component';
+import {ReportAPIService} from 'src/app/webapi/api/report.api';
+import {SecurityService} from 'src/app/services/security.service';
+import {ActionType} from 'src/app/models/authorization.types';
+import {InfocardGridComponent} from 'src/app/modules/dictionaries/components/infocard-grid/infocard-grid.component';
+import {InfocardFilterModes, InfocardFilterRoadModes} from 'src/app/modules/dictionaries/models/infocard-commons';
+import {SigninComponent} from 'src/app/modules/commons/components/signin/signin.component';
 import getCadespluginAPI from 'async-cadesplugin';
-import { CryptoService } from 'src/app/modules/commons/services/crypto.service';
-import { ArchiveReasonComponent } from './archive-reason.component';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NotifyService } from 'src/app/modules/commons/services/notify.service';
-import { IEgradDialogResult } from 'src/app/modules/dictionaries/models/EgradDialogResult';
+import {CryptoService} from 'src/app/modules/commons/services/crypto.service';
+import {ArchiveReasonComponent} from './archive-reason.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NotifyService} from 'src/app/modules/commons/services/notify.service';
+import {IEgradDialogResult} from 'src/app/modules/dictionaries/models/EgradDialogResult';
 
 @Component({
   selector: 'app-infocard-list',
@@ -40,9 +36,10 @@ export class InfocardListComponent implements OnInit {
   public get filterRoadMode(): InfocardFilterRoadModes {
     return this._filterRoadMode;
   }
+
   public set filterRoadMode(value: InfocardFilterRoadModes) {
     this._filterRoadMode = value;
-    this.infocardGrid.appendFilter([{ column: 'road_mode', value: value }]);
+    this.infocardGrid.appendFilter([{column: 'road_mode', value: value}]);
   }
 
   constructor(
@@ -54,7 +51,8 @@ export class InfocardListComponent implements OnInit {
     private cryptoService: CryptoService,
     public router: Router,
     private activeRoute: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.securityService.isPermissionInit$.subscribe(init => {
@@ -89,7 +87,7 @@ export class InfocardListComponent implements OnInit {
 
   public onModeBtnClick(mode: InfocardFilterModes) {
     this.router.navigate(['/infocards'], {
-      queryParams: { mode: mode, roadMode: this.filterRoadMode }
+      queryParams: {mode: mode, roadMode: this.filterRoadMode}
     });
   }
 
@@ -99,7 +97,7 @@ export class InfocardListComponent implements OnInit {
     }
 
     this.router.navigate(['infocards'], {
-      queryParams: { mode: this.infocardGrid.filterMode, roadMode: mode }
+      queryParams: {mode: this.infocardGrid.filterMode, roadMode: mode}
     });
   }
 
@@ -108,8 +106,8 @@ export class InfocardListComponent implements OnInit {
       title: 'Подтверждение',
       content: 'Вы уверены, что хотите удалить этот черновик инфокарты?',
       actions: [
-        { text: 'Отмена' },
-        { text: 'Ок', primary: true, confirmed: true }
+        {text: 'Отмена'},
+        {text: 'Ок', primary: true, confirmed: true}
       ]
     });
 
@@ -130,8 +128,8 @@ export class InfocardListComponent implements OnInit {
       title: 'Перевод в архив',
       content: ArchiveReasonComponent,
       actions: [
-        { text: 'Отмена', dialogResult: 'Cancel' },
-        { text: 'Ок', primary: true, dialogResult: 'OK' }
+        {text: 'Отмена', dialogResult: 'Cancel'},
+        {text: 'Ок', primary: true, dialogResult: 'OK'}
       ]
     });
 
@@ -144,7 +142,7 @@ export class InfocardListComponent implements OnInit {
         const id = entity.id;
 
         this.infocardService
-          .archive(id, { ArchiveReason: archiveReason, CaseLocation: caseLocation })
+          .archive(id, {ArchiveReason: archiveReason, CaseLocation: caseLocation})
           .subscribe(response => {
             console.log(response);
 
@@ -171,7 +169,7 @@ export class InfocardListComponent implements OnInit {
     const dialog = this.dialogService.open({
       title: entity.RoadName,
       content: DocPreviewComponent,
-      actions: [{ text: 'Отмена' }, { text: 'Ок', primary: true }],
+      actions: [{text: 'Отмена'}, {text: 'Ок', primary: true}],
       width: 800
     });
 
@@ -184,7 +182,7 @@ export class InfocardListComponent implements OnInit {
     const dialog = this.dialogService.open({
       title: `Обложка ${entity.RoadName}`,
       content: DocPreviewComponent,
-      actions: [{ text: 'Отмена' }, { text: 'Ок', primary: true }],
+      actions: [{text: 'Отмена'}, {text: 'Ок', primary: true}],
       width: 800
     });
 
@@ -198,8 +196,8 @@ export class InfocardListComponent implements OnInit {
       title: 'Подтверждение',
       content: 'Вы уверены, что хотите перенести инфокарту в базу?',
       actions: [
-        { text: 'Отмена', dialogResult: 'Cancel' },
-        { text: 'Ок', primary: true, dialogResult: 'OK' }
+        {text: 'Отмена', dialogResult: 'Cancel'},
+        {text: 'Ок', primary: true, dialogResult: 'OK'}
       ]
     });
 
@@ -220,7 +218,7 @@ export class InfocardListComponent implements OnInit {
 
     if (clickedItem) {
       this.router.navigate(['infocards', clickedItem.id, 'edit'], {
-        queryParams: { mode: this.getModeFilter(), roadMode: this.getRoadModeFilter() }
+        queryParams: {mode: this.getModeFilter(), roadMode: this.getRoadModeFilter()}
       });
     }
   }
@@ -262,8 +260,7 @@ export class InfocardListComponent implements OnInit {
   public downloadClick(event, selected) {
     if (event.format == 'html') {
       this.preview(selected);
-    }
-    else {
+    } else {
       window.location.href = this.reportApiService.getInfocardDownload(selected.id, event.format);
     }
   }
@@ -271,8 +268,7 @@ export class InfocardListComponent implements OnInit {
   public downloadCoverClick(event, selected) {
     if (event.format == 'html') {
       this.coverPreview(selected);
-    }
-    else {
+    } else {
       window.location.href = this.reportApiService.getInfocardCoverDownload(selected.id, event.format);
     }
   }

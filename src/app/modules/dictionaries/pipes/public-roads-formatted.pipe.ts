@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { InfocardDTO } from 'src/app/webapi/models/infocard.dto';
+import {Pipe, PipeTransform} from '@angular/core';
+import {InfocardDTO} from 'src/app/webapi/models/infocard.dto';
 
 @Pipe({
   name: 'publicRoadsFormatted'
@@ -12,7 +12,9 @@ export class PublicRoadsFormattedPipe implements PipeTransform {
       return value;
     }
 
-    return values.map(function (item) { return item.RoadName; }).join(', ');
+    return values.map(function (item) {
+      return item.RoadName;
+    }).join(', ');
   }
 
 }

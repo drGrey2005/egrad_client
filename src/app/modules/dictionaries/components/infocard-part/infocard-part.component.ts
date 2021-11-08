@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { InfocardCommons } from '../../models/infocard-commons';
-import { CheckedState, CheckableSettings } from '@progress/kendo-angular-treeview';
+import {Component, OnInit, Input} from '@angular/core';
+import {InfocardCommons} from '../../models/infocard-commons';
+import {CheckedState, CheckableSettings} from '@progress/kendo-angular-treeview';
 
 @Component({
   selector: 'app-infocard-part',
@@ -13,7 +13,7 @@ export class InfocardPartComponent implements OnInit {
 
   @Input() public checkedKeys: string[] = [];
 
-  public checkBy({ dataItem }) {
+  public checkBy({dataItem}) {
     return dataItem.value;
   }
 
@@ -23,10 +23,12 @@ export class InfocardPartComponent implements OnInit {
     }
 
     return 'none';
-  }
+  };
 
   private containsItem(item: { text: string, value: string }): boolean {
-    return !!this.checkedKeys.find(function (x) { return item.value === x; });
+    return !!this.checkedKeys.find(function (x) {
+      return item.value === x;
+    });
   }
 
   public get checkableSettings(): CheckableSettings {
@@ -39,7 +41,8 @@ export class InfocardPartComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

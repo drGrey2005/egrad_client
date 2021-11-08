@@ -1,4 +1,4 @@
-import { UsersFormattedPipe } from './users-formatted.pipe';
+import {UsersFormattedPipe} from './users-formatted.pipe';
 
 describe('UsersFormattedPipe', () => {
   it('create an instance', () => {

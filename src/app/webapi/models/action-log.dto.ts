@@ -1,4 +1,4 @@
-import { BaseModelDTO } from './base-model.dto';
+import {BaseModelDTO} from './base-model.dto';
 
 export class ActionLogDTO extends BaseModelDTO {
   public date: Date;

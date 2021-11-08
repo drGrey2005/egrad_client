@@ -1,5 +1,5 @@
-import { MessageService } from '@progress/kendo-angular-l10n';
-import { Inject, LOCALE_ID } from '@angular/core';
+import {MessageService} from '@progress/kendo-angular-l10n';
+import {Inject, LOCALE_ID} from '@angular/core';
 
 const data = {
   ru: {

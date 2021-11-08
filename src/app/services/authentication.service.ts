@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable, config } from 'rxjs';
-import { BASE_PATH } from '../webapi/variables';
-// import { JwtHelperService } from '@auth0/angular-jwt';
+import {HttpClient} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
+import {tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {BASE_PATH} from '../webapi/variables';
 
 @Injectable()
 export class AuthenticationService {
@@ -29,7 +28,7 @@ export class AuthenticationService {
     const url = `${this.basePath}/api/auth/token_auth/`;
 
     return this.http.post(url,
-      { username: username, password: password })
+      {username: username, password: password})
       .pipe(
         tap(res => {
           localStorage.setItem(this.tokenConst, (<any>res).token);

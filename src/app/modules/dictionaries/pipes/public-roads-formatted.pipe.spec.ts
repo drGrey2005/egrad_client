@@ -1,4 +1,4 @@
-import { PublicRoadsFormattedPipe } from './public-roads-formatted.pipe';
+import {PublicRoadsFormattedPipe} from './public-roads-formatted.pipe';
 
 describe('PublicRoadsFormattedPipe', () => {
   it('create an instance', () => {

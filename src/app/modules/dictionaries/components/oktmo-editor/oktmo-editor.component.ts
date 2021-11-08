@@ -1,15 +1,15 @@
-import { Component, OnInit, ElementRef, forwardRef, ViewChild, Input } from '@angular/core';
-import { OktmoTreeComponent } from '../oktmo-tree/oktmo-tree.component';
-import { DialogCloseResult, DialogRef, DialogService } from '@progress/kendo-angular-dialog';
-import { OktmoDTO } from 'src/app/webapi/models/oktmo.dto';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OktmoValuesFormattedPipe } from '../../pipes/oktmo-values-formatted.pipe';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {OktmoTreeComponent} from '../oktmo-tree/oktmo-tree.component';
+import {DialogRef, DialogService} from '@progress/kendo-angular-dialog';
+import {OktmoDTO} from 'src/app/webapi/models/oktmo.dto';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {OktmoValuesFormattedPipe} from '../../pipes/oktmo-values-formatted.pipe';
 
 @Component({
   selector: 'app-oktmo-editor',
   templateUrl: './oktmo-editor.component.html',
   styleUrls: ['./oktmo-editor.component.css'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: OktmoEditorComponent, multi: true }]
+  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: OktmoEditorComponent, multi: true}]
 })
 export class OktmoEditorComponent implements ControlValueAccessor, OnInit {
   protected _value: OktmoDTO[];
@@ -20,7 +20,7 @@ export class OktmoEditorComponent implements ControlValueAccessor, OnInit {
   @Input() onlyTopLevel: boolean;
 
   constructor(private host: ElementRef, private dialogService: DialogService,
-    private oktmoValuesFormatService: OktmoValuesFormattedPipe) {
+              private oktmoValuesFormatService: OktmoValuesFormattedPipe) {
   }
 
   public set value(val: OktmoDTO[]) {
@@ -53,8 +53,8 @@ export class OktmoEditorComponent implements ControlValueAccessor, OnInit {
       title: 'ОКТМО',
       content: OktmoTreeComponent,
       actions: [
-        { text: 'Отмена' },
-        { text: 'OK', primary: true }
+        {text: 'Отмена'},
+        {text: 'OK', primary: true}
       ],
       width: 650,
       height: 650,
@@ -102,7 +102,9 @@ export class OktmoEditorComponent implements ControlValueAccessor, OnInit {
     this.input.disabled = isDisabled;
   }
 
-  private onChangeCallback = (data: any) => { };
+  private onChangeCallback = (data: any) => {
+  };
 
-  private onTouchedCallback = () => { };
+  private onTouchedCallback = () => {
+  };
 }

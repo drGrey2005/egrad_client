@@ -1,4 +1,4 @@
-import { BaseModelDTO } from './base-model.dto';
+import {BaseModelDTO} from './base-model.dto';
 
 export class OktmoDTO extends BaseModelDTO {
   public Code: string;

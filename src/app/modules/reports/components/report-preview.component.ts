@@ -1,6 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ReportTemplateAPIService } from 'src/app/webapi/api/report-template.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ReportTemplateAPIService} from 'src/app/webapi/api/report-template.service';
 
 @Component({
   selector: 'app-report-preview',
@@ -17,14 +17,15 @@ export class ReportPreviewComponent implements OnInit {
       text: 'Microsoft Word', value: 'docx', icon: 'fa-file-word',
       fileType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     },
-    { text: 'PDF', value: 'pdf', icon: 'fa-file-pdf', fileType: 'application/pdf' },
-    { text: 'RTF', value: 'rtf', icon: 'fa-file-alt', fileType: 'application/rtf' },
+    {text: 'PDF', value: 'pdf', icon: 'fa-file-pdf', fileType: 'application/pdf'},
+    {text: 'RTF', value: 'rtf', icon: 'fa-file-alt', fileType: 'application/rtf'},
   ];
 
   @ViewChild('reportHtmlViewer') reportHtmlFrame: ElementRef;
 
   constructor(private apiService: ReportTemplateAPIService,
-    private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     const frameDocument = this.reportHtmlFrame.nativeElement.contentWindow.document;
@@ -63,7 +64,7 @@ export class ReportPreviewComponent implements OnInit {
   }
 
   private downloadFile(data, fileType: string) {
-    const file = new File([data], 'test.txt', { type: fileType });
+    const file = new File([data], 'test.txt', {type: fileType});
     console.log(file);
     const url = window.URL.createObjectURL(file);
     window.open(url);

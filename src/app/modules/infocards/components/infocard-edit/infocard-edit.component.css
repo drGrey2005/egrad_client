@@ -1,10 +1,11 @@
-textarea{
-    width: 100%;
+textarea {
+  width: 100%;
 }
-.k-button{
+
+.k-button {
   margin: 0 3px;
 }
 
-kendo-dropdownbutton{
+kendo-dropdownbutton {
   margin: 0 3px;
 }

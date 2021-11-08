@@ -1,4 +1,4 @@
-import { RoadImportanceFormattedPipe } from './road-importance-formatted.pipe';
+import {RoadImportanceFormattedPipe} from './road-importance-formatted.pipe';
 
 describe('RoadImportanceFormattedPipe', () => {
   it('create an instance', () => {

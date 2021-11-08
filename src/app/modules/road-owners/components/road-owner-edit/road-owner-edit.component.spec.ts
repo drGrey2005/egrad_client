@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoadOwnerEditComponent } from './road-owner-edit.component';
+import {RoadOwnerEditComponent} from './road-owner-edit.component';
 
 describe('RoadOwnerEditComponent', () => {
   let component: RoadOwnerEditComponent;
@@ -8,9 +8,9 @@ describe('RoadOwnerEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoadOwnerEditComponent ]
+      declarations: [RoadOwnerEditComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

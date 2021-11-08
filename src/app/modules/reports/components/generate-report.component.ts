@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { RoadCommons } from 'src/app/modules/dictionaries/models/road-commons';
-import { RoadOwnerDTO } from 'src/app/webapi/models/road-owner.dto';
-import { RoadOwnerAPIService } from 'src/app/webapi/api/road-onwer.service';
-import { SignerDTO } from 'src/app/webapi/models/signer.dto';
-import { InfodocSignerAPIService } from 'src/app/webapi/api/infodoc-signer.service';
-import { OktmoAPIService } from 'src/app/webapi/api/oktmo.service';
-import { OktmoDTO } from 'src/app/webapi/models/oktmo.dto';
-import { UserDTO } from 'src/app/webapi/models/user';
-import { UserAPIService } from 'src/app/webapi/api/user.service';
-import { ActionLogCommons } from '../../dictionaries/models/action-log-commons';
-import { OrganizationDTO } from 'src/app/webapi/models/organization.dto';
+import {Component, OnInit} from '@angular/core';
+import {RoadCommons} from 'src/app/modules/dictionaries/models/road-commons';
+import {RoadOwnerDTO} from 'src/app/webapi/models/road-owner.dto';
+import {RoadOwnerAPIService} from 'src/app/webapi/api/road-onwer.service';
+import {SignerDTO} from 'src/app/webapi/models/signer.dto';
+import {InfodocSignerAPIService} from 'src/app/webapi/api/infodoc-signer.service';
+import {OktmoAPIService} from 'src/app/webapi/api/oktmo.service';
+import {OktmoDTO} from 'src/app/webapi/models/oktmo.dto';
+import {UserDTO} from 'src/app/webapi/models/user';
+import {ActionLogCommons} from '../../dictionaries/models/action-log-commons';
+import {OrganizationDTO} from 'src/app/webapi/models/organization.dto';
 
 @Component({
   selector: 'abs-generate-report',
@@ -49,8 +48,9 @@ export class GenerateReportComponent implements OnInit {
   rightDocTypes = RoadCommons.RightDocType;
 
   constructor(private roadOwnerService: RoadOwnerAPIService,
-    private signerService: InfodocSignerAPIService,
-    private oktmoService: OktmoAPIService) { }
+              private signerService: InfodocSignerAPIService,
+              private oktmoService: OktmoAPIService) {
+  }
 
   ngOnInit() {
     this.roadOwnerService.list().subscribe(data => {
@@ -124,25 +124,41 @@ export class GenerateReportComponent implements OnInit {
 }
 
 function sortByRoadOwner(o1: RoadOwnerDTO, o2: RoadOwnerDTO): number {
-  if (o1.Name < o2.Name) { return -1; }
-  if (o1.Name > o2.Name) { return 1; }
+  if (o1.Name < o2.Name) {
+    return -1;
+  }
+  if (o1.Name > o2.Name) {
+    return 1;
+  }
   return 0;
 }
 
 function sortByOktmo(o1: OktmoDTO, o2: OktmoDTO): number {
-  if (o1.Name2 < o2.Name2) { return -1; }
-  if (o1.Name2 > o2.Name2) { return 1; }
+  if (o1.Name2 < o2.Name2) {
+    return -1;
+  }
+  if (o1.Name2 > o2.Name2) {
+    return 1;
+  }
   return 0;
 }
 
 function sortByUser(o1: UserDTO, o2: UserDTO): number {
-  if (o1.last_name + o1.first_name < o2.last_name + o2.first_name) { return -1; }
-  if (o1.last_name + o1.first_name > o2.last_name + o2.first_name) { return 1; }
+  if (o1.last_name + o1.first_name < o2.last_name + o2.first_name) {
+    return -1;
+  }
+  if (o1.last_name + o1.first_name > o2.last_name + o2.first_name) {
+    return 1;
+  }
   return 0;
 }
 
 function sortByOrganization(o1: string, o2: string): number {
-  if (o1 < o2) { return -1; }
-  if (o1 > o2) { return 1; }
+  if (o1 < o2) {
+    return -1;
+  }
+  if (o1 > o2) {
+    return 1;
+  }
   return 0;
 }
